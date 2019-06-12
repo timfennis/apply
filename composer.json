@@ -1,28 +1,41 @@
 {
-    "name": "timfennis/phunctional",
-    "description": "Functional programming library",
-    "keywords": ["php", "fp", "functional programming"],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Tim Fennis",
-            "email": "fennis.tim@gmail.com"
-        }
-    ],
-    "type": "library",
-    "require": {
-		"php": ">=7.3"
-    },
-    "require-dev": {
-		"phpunit/phpunit": "^8.0"
-    },
-    "autoload": {
-      "psr-4": {
-        "Phunctional\\": "src/"
-      },
-      "files": [
-          "src/Collection/FlatMap.php",
-          "src/Collection/Curried/FlatMap.php"
-        ]
+  "name": "timfennis/functional-php",
+  "description": "Functional programming library",
+  "keywords": [
+    "php",
+    "fp",
+    "functional programming"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tim Fennis",
+      "email": "fennis.tim@gmail.com"
     }
+  ],
+  "type": "library",
+  "require": {
+    "php": ">=7.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Timfennis\\Functional\\": "src/"
+    },
+    "files": [
+      "src/Collection/Imperative/FlatMap.php",
+      "src/Collection/Curried/FlatMap.php",
+      "src/Collection/Imperative/Take.php",
+      "src/Collection/Curried/Take.php",
+      "src/Collection/Imperative/Foldl1.php",
+      "src/Collection/Curried/Foldl1.php",
+      "src/Collection/Imperative/Foldl.php",
+      "src/Collection/Curried/Foldl.php",
+      "src/Identity.php",
+      "src/Constant.php"
+    ]
+  },
+  "require-dev": {
+    "codeception/codeception": "^3.0",
+    "friendsofphp/php-cs-fixer": "^2.15"
+  }
 }

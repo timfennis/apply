@@ -1,8 +1,7 @@
 <?php
 
-namespace Phunctional\Exception;
+namespace Apply\Exception;
 
 class InvalidArgumentException extends \InvalidArgumentException
 {
-
 }
