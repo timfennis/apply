@@ -1,5 +1,5 @@
 <?php
-namespace Functional\Collection;
+namespace Test\Apply\Functional\Collection;
 
 use Codeception\Test\Unit;
 use function Apply\Collection\Imperative\flatMap;

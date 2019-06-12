@@ -1,4 +1,6 @@
-<?php namespace Apply\Collection;
+<?php
+
+namespace Apply\Collection;
 
 use Codeception\Test\Unit;
 use PHPUnit\Framework\TestCase;

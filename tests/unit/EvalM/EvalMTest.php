@@ -1,4 +1,6 @@
-<?php namespace Functional\EvalP;
+<?php
+
+namespace Test\Apply\EvalM;
 
 use Codeception\Test\Unit;
 use FunctionalTester;

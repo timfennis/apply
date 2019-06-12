@@ -19,23 +19,33 @@
   },
   "autoload": {
     "psr-4": {
-      "Timfennis\\Functional\\": "src/"
+      "Apply\\": "src/"
     },
     "files": [
+      "src/Collection/Imperative/All.php",
+      "src/Collection/Curried/All.php",
+      "src/Collection/Imperative/Drop.php",
+      "src/Collection/Curried/Drop.php",
       "src/Collection/Imperative/FlatMap.php",
       "src/Collection/Curried/FlatMap.php",
-      "src/Collection/Imperative/Take.php",
-      "src/Collection/Curried/Take.php",
-      "src/Collection/Imperative/Foldl1.php",
-      "src/Collection/Curried/Foldl1.php",
       "src/Collection/Imperative/Foldl.php",
       "src/Collection/Curried/Foldl.php",
+      "src/Collection/Imperative/Foldl1.php",
+      "src/Collection/Curried/Foldl1.php",
+      "src/Collection/Imperative/Map.php",
+      "src/Collection/Curried/Map.php",
+      "src/Collection/Imperative/Take.php",
+      "src/Collection/Curried/Take.php",
       "src/Identity.php",
-      "src/Constant.php"
+      "src/Constant.php",
+      "src/Option/Just.php"
     ]
   },
   "require-dev": {
     "codeception/codeception": "^3.0",
     "friendsofphp/php-cs-fixer": "^2.15"
+  },
+  "config": {
+    "bin-dir": "bin"
   }
 }

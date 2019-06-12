@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Functional\Collection\Sequence;
+namespace Test\Apply\Collection\Sequence;
 
 
 use Codeception\Test\Unit;
