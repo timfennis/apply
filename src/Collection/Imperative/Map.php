@@ -5,7 +5,13 @@ namespace Apply\Collection\Imperative;
 use function Apply\Collection\Curried\map as curriedMap;
 use Generator;
 
-function map(iterable $iterable, callable $callable): Generator
+/**
+ * @param iterable $collection
+ * @param callable $callback
+ *
+ * @return Generator
+ */
+function map(iterable $collection, callable $callback): Generator
 {
-    yield from curriedMap($callable)($iterable);
+    yield from curriedMap($callback)($collection);
 }

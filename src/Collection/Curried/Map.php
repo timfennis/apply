@@ -7,15 +7,17 @@ use Generator;
 /**
  * map :: (a -> b) -> [a] -> [b]
  *
- * @param callable $callable
+ * map f xs is the list obtained by applying f to each element of xs, i.e.,
+ *
+ * @param callable $f a -> b
  *
  * @return callable
  */
-function map(callable $callable): callable
+function map(callable $f): callable
 {
-    return static function (iterable $iterable) use ($callable): Generator {
-        foreach ($iterable as $item) {
-            yield $callable($item);
+    return static function (iterable $collection) use ($f): Generator {
+        foreach ($collection as $value) {
+            yield $f($value);
         }
     };
 }
