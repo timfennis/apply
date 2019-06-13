@@ -12,7 +12,7 @@ use function Apply\constant;
  *
  * @return callable
  */
-function firstOrNull(iterable $collection, ?callable $predicate = null): callable
+function firstOrNull(iterable $collection, ?callable $predicate = null)
 {
     $predicate = $predicate ?? constant(true);
     return curriedFirstOrNull($predicate)($collection);
