@@ -11,7 +11,7 @@ use function Apply\Collection\Curried\foldl as curriedFoldl;
  *
  * @return mixed
  */
-function foldl(iterable $iterable, $initial, callable $callable)
+function foldl(iterable $iterable, callable $callable, $initial)
 {
     return curriedFoldl($callable)($initial)($iterable);
 }
