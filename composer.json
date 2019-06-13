@@ -50,6 +50,7 @@
       "src/Collection/Tail.php",
       "src/Collection/Each.php",
       "src/Collection/IteratorOf.php",
+      "src/Collection/ToArray.php",
       "src/Fun/Curried/Flip.php",
       "src/Fun/Curried/Operator.php",
       "src/Identity.php",
