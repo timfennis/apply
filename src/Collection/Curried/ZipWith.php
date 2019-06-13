@@ -15,10 +15,8 @@ function zipWith(callable $zipper): callable
 {
     return static function ($as) use ($zipper): callable {
         return static function (iterable $bs) use ($zipper, $as): Generator {
-            foreach ($as as $a) {
-                foreach ($bs as $b) {
-                    yield $zipper($a, $b);
-                }
+            foreach ($as as $index => $a) {
+                yield $zipper($a, $bs[$index]);
             }
         };
     };

@@ -13,6 +13,6 @@ class ZipWithTest extends Unit
         $a = [1, 2, 3];
         $b = [4, 5, 6];
 
-        $this->assertSame([[1, 4], [2, 5], [3, 6]], iterator_to_array(zipWith($a, $b, static function ($a, $b) { return $a + $b; })));
+        $this->assertSame([5, 7, 9], iterator_to_array(zipWith($a, $b, static function ($a, $b) { return $a + $b; })));
     }
 }

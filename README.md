@@ -45,10 +45,69 @@ some($gt7)($list); // true because all items are greater than 7
 some($gt20)($list); // false because none of the items are greater than 20
 ```
 
+
+### `identity` and `constant`
+
+These two guys can often be very useful in many situations. `constant` returns a function that always returns the value
+that you passed to it. While identity is a function that always returns it's argument.
+
+```php
+$numbers = [1,2,3];
+map(Functions::identity)($numbers); // [1,2,3]
+map(constant(4))($numbers); // [4,4,4]
+```
+
 ## Monads
+
+Check [this](https://arrow-kt.io/docs/patterns/monads/) page for a good tutorial on what Monads are. You don't really 
+have to understand them in order to (ab)use them though.
 
 ### Try
 
-### Option
+`TryM` represents the result of a computation that can either have a result when the computation was successful or
+an exception if something went wrong. If the computation went correctly you get a `Success<A>` containing the result and 
+if the computation goes wrong you get a `Failure` containing the exception.
+
+`TryM` looks a lot like `Either` but is especially useful in situation where you have to consume some library or 
+language feature that throws unwanted exception. `TryM` can be used to to capture exceptions and performing computations
+on the result without having to build complicated and verbose `try-catch` blocks. 
+
+```php
+function loadFromAPI() {
+    throw new InvalidAuthenticationCredentialsException('Your authentication credentials are invalid');
+}
+
+$tryLoad = TryM::of(fn() => loadFromAPI());
+$result = $tryLoad->getOrDefault(null); // returns null
+
+if ($tryLoad->isFailure()) {
+    // true it went wrong!
+}
+```
+
+Most often you may want to fold over the computation
+
+```php
+$tryLoad = TryM::of(fn() => rollTheDice());
+
+$number = $tryLoad->fold(
+    fn(Throwable $t) => 0,
+    fn(int $successValue) => $successValue + 1
+);
+```
+
+### Option (Maybe)
+
+For now this is basically a direct copy paste of `schmittjoh/php-option` which can be found 
+[here](https://github.com/schmittjoh/php-option).
+
+In the future I might change it entirely or add a Maybe monad if I want to break backwards compatibility. Suggestions
+are welcome. 
 
 ### Either
+
+Cool way to deal with errors in your library
+
+### EvalM
+
+Wrapper around a lazy computation. Not sure if this is ever useful

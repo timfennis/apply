@@ -13,9 +13,8 @@ use Generator;
 function zip(iterable $as): callable
 {
     return static function (iterable $bs) use ($as): Generator {
-        $i = 0;
-        foreach ($as as $a) {
-            yield [$a, $bs[$i]];
+        foreach ($as as $index => $a) {
+            yield [$a, $bs[$index]];
         }
     };
 }

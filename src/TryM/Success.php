@@ -14,13 +14,23 @@ final class Success extends TryM
         $this->value = $value;
     }
 
-    public function flatMap(callable $callable): TryM
+    public function flatMap(callable $f): TryM
     {
-        return $callable($this->value);
+        return $f($this->value);
     }
 
-    public function get()
+    public function isSuccess(): bool
     {
-        return $this->value;
+        return true;
+    }
+
+    public function isFailure(): bool
+    {
+        return false;
+    }
+
+    public function fold(callable $ifFailure, callable $ifSuccess)
+    {
+        return $ifSuccess($this->value);
     }
 }
