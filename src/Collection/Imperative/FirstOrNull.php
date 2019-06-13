@@ -10,7 +10,7 @@ use function Apply\constant;
  * @param iterable $collection
  * @param callable $predicate
  *
- * @return callable
+ * @return mixed
  */
 function firstOrNull(iterable $collection, ?callable $predicate = null)
 {
