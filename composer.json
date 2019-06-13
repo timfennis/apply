@@ -6,7 +6,7 @@
     "fp",
     "functional programming"
   ],
-  "license": "MIT",
+  "license": "Apache-2.0 AND MIT",
   "authors": [
     {
       "name": "Tim Fennis",

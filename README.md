@@ -103,11 +103,10 @@ $number = $tryLoad->fold(
 
 ### Option (Maybe)
 
-For now this is basically a direct copy paste of `schmittjoh/php-option` which can be found 
-[here](https://github.com/schmittjoh/php-option).
+The Option monad is a modern rewrite of `schmittjoh/php-option` which can be found 
+[here](https://github.com/schmittjoh/php-option). It's designed to be mostly compatible with it's interface.
 
-In the future I might change it entirely or add a Maybe monad if I want to break backwards compatibility. Suggestions
-are welcome. 
+Suggestions are welcome.
 
 ### Either
 
@@ -116,3 +115,7 @@ Cool way to deal with errors in your library
 ### EvalM
 
 Wrapper around a lazy computation. Not sure if this is ever useful
+
+## License
+
+`SPDX-License-Identifier: Apache-2.0 AND MIT`
