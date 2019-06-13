@@ -48,6 +48,7 @@
       "src/Collection/Curried/ZipWith.php",
       "src/Collection/Head.php",
       "src/Collection/Tail.php",
+      "src/Collection/Each.php",
       "src/Fun/Curried/Flip.php",
       "src/Fun/Curried/Operator.php",
       "src/Identity.php",
