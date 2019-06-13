@@ -3,7 +3,12 @@
 Apply is a Library that aims to promote and bring functional programming ideas from different languages and 
 libraries such as Haskell, Scala, Kotlin, Arrow and Cats to PHP.
 
-The library is currently very much a work in progress.
+This library is designed to be used with PHP 7.4 which does not have a stable release yet. The documentation uses some
+of the new syntax (particularly the short closure syntax) for brevity.
+
+## Stability
+
+The library is currently very much a work in progress. Everything could change at any moment.
 
 ## Curried Functions
  

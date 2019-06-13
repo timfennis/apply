@@ -1,12 +1,12 @@
 {
-  "name": "timfennis/functional-php",
+  "name": "timfennis/apply",
   "description": "Functional programming library",
   "keywords": [
     "php",
     "fp",
     "functional programming"
   ],
-  "license": "MIT",
+  "license": "DBAD",
   "authors": [
     {
       "name": "Tim Fennis",
