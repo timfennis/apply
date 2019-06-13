@@ -6,13 +6,12 @@ use function Apply\Collection\Curried\filter as curriedFilter;
 use Generator;
 
 /**
- * @param callable $predicate
- *
  * @param iterable $collection
+ * @param callable $predicate
  *
  * @return Generator
  */
-function filter(callable $predicate, iterable $collection): Generator
+function filter(iterable $collection, callable $predicate): Generator
 {
     yield from curriedFilter($predicate)($collection);
 }

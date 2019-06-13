@@ -22,5 +22,6 @@ function head(iterable $collection)
         return $item;
     }
 
+
     throw new InvalidArgumentException('Head cannot operate on an empty list');
 }
