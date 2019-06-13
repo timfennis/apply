@@ -36,6 +36,10 @@
       "src/Collection/Curried/Map.php",
       "src/Collection/Imperative/Take.php",
       "src/Collection/Curried/Take.php",
+      "src/Collection/Imperative/Zip.php",
+      "src/Collection/Curried/Zip.php",
+      "src/Collection/Imperative/ZipWith.php",
+      "src/Collection/Curried/ZipWith.php",
       "src/Identity.php",
       "src/Constant.php",
       "src/Option/Just.php"
