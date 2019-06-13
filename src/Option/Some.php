@@ -139,4 +139,9 @@ final class Some extends Option
     {
         return $callable($this->value, $initialValue);
     }
+
+    public function fold(callable $ifEmpty, callable $ifSome)
+    {
+        return $ifSome($this->value);
+    }
 }

@@ -110,8 +110,5 @@ abstract class Option implements IteratorAggregate
 
     abstract public function foldRight($initialValue, callable $callable);
 
-    public function fold($initialValue, callable $callable)
-    {
-        return $this->foldLeft($initialValue, $callable);
-    }
+    abstract public function fold(callable $ifEmpty, callable $ifSome);
 }

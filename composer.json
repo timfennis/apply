@@ -42,14 +42,19 @@
       "src/Collection/Curried/Zip.php",
       "src/Collection/Imperative/ZipWith.php",
       "src/Collection/Curried/ZipWith.php",
+      "src/Collection/Head.php",
+      "src/Collection/Tail.php",
       "src/Identity.php",
       "src/Constant.php",
-      "src/Option/Just.php"
+      "src/Option/Just.php",
+      "src/Option/ListToOption.php",
+      "src/Option/OptionToList.php"
     ]
   },
   "require-dev": {
     "codeception/codeception": "^3.0",
-    "friendsofphp/php-cs-fixer": "^2.15"
+    "friendsofphp/php-cs-fixer": "^2.15",
+    "phpunit/phpunit": "8.1.*"
   },
   "config": {
     "bin-dir": "bin"

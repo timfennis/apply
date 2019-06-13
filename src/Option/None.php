@@ -30,6 +30,10 @@ final class None extends Option
 {
     private static $instance;
 
+    private function __construct()
+    {
+    }
+
     public static function create(): None
     {
         if (null === self::$instance) {
@@ -122,7 +126,8 @@ final class None extends Option
         return $initialValue;
     }
 
-    private function __construct()
+    public function fold(callable $ifEmpty, callable $ifSome)
     {
+        return $ifEmpty();
     }
 }
