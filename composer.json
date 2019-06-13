@@ -24,6 +24,8 @@
     "files": [
       "src/Collection/Imperative/All.php",
       "src/Collection/Curried/All.php",
+      "src/Collection/Imperative/Any.php",
+      "src/Collection/Curried/Any.php",
       "src/Collection/Imperative/Drop.php",
       "src/Collection/Curried/Drop.php",
       "src/Collection/Imperative/FlatMap.php",

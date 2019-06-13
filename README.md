@@ -38,7 +38,9 @@ all($gt4)($list); // true because all items are greater than 4
 all($gt5)($list); // false because not all items are greater than 5
 ```
 
-#### Some
+#### Any
+
+Returns true if any (or some) of the predicates are true.
 
 ```php
 $list = [5, 6, 7, 8, 9, 10];
@@ -46,8 +48,8 @@ $list = [5, 6, 7, 8, 9, 10];
 $gt7 = fn($n) => $n > 7;
 $gt20 = fn($n) => $n > 20;
 
-some($gt7)($list); // true because all items are greater than 7
-some($gt20)($list); // false because none of the items are greater than 20
+any($gt7)($list); // true because all items are greater than 7
+any($gt20)($list); // false because none of the items are greater than 20
 ```
 
 
