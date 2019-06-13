@@ -118,4 +118,7 @@ Wrapper around a lazy computation. Not sure if this is ever useful
 
 ## License
 
+Most of the source code in this project is  licensed under MIT. The `Apply\Option` packages is derived from 
+`schmittjoh/php-option` which is licensed under Apache-2.0. 
+
 `SPDX-License-Identifier: Apache-2.0 AND MIT`

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This code is derrived from schmittjoh/php-option
+ * This code is derived from schmittjoh/php-option
  *
  * PHP Option license follows:
  *
