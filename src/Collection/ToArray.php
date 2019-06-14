@@ -2,15 +2,15 @@
 
 namespace Apply\Collection;
 
-use Iterator;
+use Traversable;
 
 /**
  * Shorter version of iterator_to_array with use_keys set to false
  *
- * @param Iterator $iterator
+ * @param Traversable $iterator
  * @return array
  */
-function toArray(Iterator $iterator): array
+function toArray(Traversable $iterator): array
 {
     return iterator_to_array($iterator, false);
 }

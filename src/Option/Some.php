@@ -144,4 +144,9 @@ final class Some extends Option
     {
         return $ifSome($this->value);
     }
+
+    public function orNull()
+    {
+        return $this->value;
+    }
 }

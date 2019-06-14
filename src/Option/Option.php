@@ -78,6 +78,8 @@ abstract class Option implements IteratorAggregate
         return self::fromValue($value, $noneValue);
     }
 
+    abstract public function orNull();
+
     abstract public function get();
 
     abstract public function getOrElse($default);

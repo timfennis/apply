@@ -130,4 +130,9 @@ final class None extends Option
     {
         return $ifEmpty();
     }
+
+    public function orNull()
+    {
+        return null;
+    }
 }

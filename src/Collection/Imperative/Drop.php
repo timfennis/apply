@@ -13,5 +13,5 @@ use Generator;
  */
 function drop(iterable $iterable, int $item): Generator
 {
-    yield from curriedDrop($item, $iterable);
+    yield from curriedDrop($item)($iterable);
 }
