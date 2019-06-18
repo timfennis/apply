@@ -3,7 +3,6 @@
 
 namespace Test\Apply\Functional\Collection;
 
-
 use function Apply\Collection\Imperative\map;
 use Codeception\Test\Unit;
 

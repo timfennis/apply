@@ -8,7 +8,6 @@ use function Apply\Collection\Curried\foldl1;
 
 class Foldl1Test extends Unit
 {
-
     public function testWithAThreeElementList()
     {
         $list = [1,2,3];
@@ -39,5 +38,4 @@ class Foldl1Test extends Unit
     {
         return $a + $b;
     }
-
 }

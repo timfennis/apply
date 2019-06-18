@@ -3,7 +3,6 @@
 
 namespace Apply\TryM;
 
-
 use Throwable;
 
 final class Failure extends TryM

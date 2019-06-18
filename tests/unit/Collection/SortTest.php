@@ -3,7 +3,6 @@
 
 namespace Test\Apply\Functional\Collection;
 
-
 use function Apply\Collection\Imperative\sortBy;
 use function Apply\Collection\Imperative\sortOn;
 use function Apply\Collection\sort;

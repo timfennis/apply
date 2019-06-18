@@ -3,7 +3,6 @@
 
 namespace Apply\TryM;
 
-
 final class Success extends TryM
 {
     /** @var mixed */

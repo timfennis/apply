@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Apply\Collection\Curried;
-
 
 use Generator;
 

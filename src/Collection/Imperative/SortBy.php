@@ -12,4 +12,3 @@ function sortBy(iterable $collection, callable $sortFunction): iterable
 {
     return \Apply\Collection\Curried\sortBy($sortFunction)($collection);
 }
-

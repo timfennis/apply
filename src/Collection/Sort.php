@@ -11,6 +11,7 @@ namespace Apply\Collection;
  */
 function sort(iterable $collection): iterable
 {
-    return Curried\sortBy(static function ($left, $right) { return $left <=> $right; })($collection);
+    return Curried\sortBy(static function ($left, $right) {
+        return $left <=> $right;
+    })($collection);
 }
-

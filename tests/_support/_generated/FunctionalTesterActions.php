@@ -11,6 +11,4 @@ trait FunctionalTesterActions
      * @return \Codeception\Scenario
      */
     abstract protected function getScenario();
-
-    
 }

@@ -17,7 +17,6 @@ use Traversable;
 function sortBy(callable $sortFunction): callable
 {
     return static function (iterable $collection) use ($sortFunction) : iterable {
-
         $array = $collection instanceof Traversable
             ? toArray($collection)
             : $collection;
@@ -28,4 +27,3 @@ function sortBy(callable $sortFunction): callable
         return $array;
     };
 }
-

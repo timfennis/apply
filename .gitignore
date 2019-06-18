@@ -2,4 +2,3 @@
 vendor/
 bin/
 tests/_output
-tests/_support

@@ -12,4 +12,3 @@ function sortOn(iterable $collection, callable $f): iterable
 {
     return \Apply\Collection\Curried\sortOn($f)($collection);
 }
-

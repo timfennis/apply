@@ -51,11 +51,13 @@ abstract class TryM
         });
     }
 
-    public function getOrDefault($defaultValue = null) {
+    public function getOrDefault($defaultValue = null)
+    {
         return $this->fold(constant($defaultValue), Functions::identity);
     }
 
-    public function getOrElse(callable $ifFailure) {
+    public function getOrElse(callable $ifFailure)
+    {
         return $this->fold($ifFailure, Functions::identity);
     }
 

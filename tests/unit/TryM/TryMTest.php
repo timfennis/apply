@@ -3,7 +3,6 @@
 
 namespace Test\Apply\TryM;
 
-
 use Apply\Functions;
 use Apply\TryM\TryM;
 use Codeception\Test\Unit;

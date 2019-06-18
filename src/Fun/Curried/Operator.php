@@ -149,10 +149,9 @@ function operator(string $symbol)
             return static function ($a) {
                 return static function ($b) use ($a) {
                     return $a <=> $b;
-
                 };
             };
-        default :
+        default:
             throw new InvalidArgumentException("Unknown operator '$symbol'");
     }
 }

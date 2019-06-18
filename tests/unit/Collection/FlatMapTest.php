@@ -25,7 +25,6 @@ class FlatMapTest extends Unit
         $outList = flatMap($list, Functions::identity);
 
         $this->assertSame([], iterator_to_array($outList, false));
-
     }
 
     public function testWitHEmptyAndNonEmptyLists(): void

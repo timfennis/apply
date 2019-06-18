@@ -17,4 +17,3 @@ function sortOn(callable $f): callable
         return $f($left) <=> $f($right);
     });
 }
-
