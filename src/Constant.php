@@ -14,7 +14,7 @@ namespace Apply;
 function constant($a): callable
 {
     //todo do we keep $b?
-    return static function ($b) use ($a) {
+    return static function ($b = null) use ($a) {
         return $a;
     };
 }

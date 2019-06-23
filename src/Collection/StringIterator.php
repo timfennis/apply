@@ -7,7 +7,6 @@ use Iterator;
 
 class StringIterator implements Iterator
 {
-
     /** @var string */
     private $string;
 
