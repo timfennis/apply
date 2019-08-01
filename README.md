@@ -112,7 +112,26 @@ Suggestions are welcome.
 
 ### Either
 
-Cool way to deal with errors in your library
+
+```php
+
+/**
+ * @return Either<string, Response>
+ */
+function loadFromApi(): Either {
+    try { 
+        return new Right(httpGet("http://example.com"));
+    } catch (RequestException $e) {
+        return new Left("Request Error");
+    } catch (ResponseException $e) {
+        return new Left("Response Error");
+    }
+}
+
+```
+
+Instead of using `string` as type directly you probably want to define your own error types like `RequestError` and 
+`ResponseError`. Those types could then have meaningful properties that assist with error handling.  
 
 ### EvalM
 

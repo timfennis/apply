@@ -26,12 +26,12 @@ abstract class TryM
         }
     }
 
-    public static function raiseError(Throwable $throwable)
+    public static function raiseError(Throwable $throwable): Failure
     {
         return new Failure($throwable);
     }
 
-    public static function just($value)
+    public static function just($value): Success
     {
         return new Success($value);
     }
@@ -61,7 +61,6 @@ abstract class TryM
         return $this->fold($ifFailure, Functions::identity);
     }
 
-//    abstract public function get();
     abstract public function flatMap(callable $f): self;
 
     abstract public function fold(callable $ifFailure, callable $ifSuccess);

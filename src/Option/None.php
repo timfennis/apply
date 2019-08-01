@@ -49,7 +49,7 @@ final class None extends Option
 
     public function get()
     {
-        return $this->getOrThrow(new RuntimeException(self::class . ' has no value.'));
+        throw new RuntimeException(self::class . ' has no value.');
     }
 
     public function getOrCall(callable $callable)
@@ -62,7 +62,7 @@ final class None extends Option
         return $default;
     }
 
-    public function getOrThrow(Exception $ex)
+    public function getOrThrow(Exception $ex): void
     {
         throw $ex;
     }

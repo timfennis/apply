@@ -13,8 +13,7 @@ use Generator;
  */
 function cons($head): callable
 {
-    return static function (iterable $tail) use ($head) : Generator
-    {
+    return static function (iterable $tail) use ($head) : Generator {
         yield $head;
         yield from $tail;
     };
