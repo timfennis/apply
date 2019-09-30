@@ -16,7 +16,8 @@ function zipWith(callable $zipper): callable
     return static function ($as) use ($zipper): callable {
         return static function (iterable $bs) use ($zipper, $as): Generator {
             foreach ($as as $index => $a) {
-                yield $zipper($a, $bs[$index]);
+                //@todo this default to null behavior is probably an issue but array access is not valid on iterable so we need to do something?
+                yield $zipper($a, $bs[$index] ?? null);
             }
         };
     };

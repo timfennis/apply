@@ -1,0 +1,11 @@
+---
+kind: pipeline
+name: default
+
+steps:
+  - name: codeception
+    image: php:7.3-alpine
+    commans:
+      - bin/phpstan analyze src/ --level=max
+      - bin/php-cs-fixer fix --dry-run --diff src/
+      - bin/codecept run unit

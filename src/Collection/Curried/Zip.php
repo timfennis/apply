@@ -14,7 +14,8 @@ function zip(iterable $as): callable
 {
     return static function (iterable $bs) use ($as): Generator {
         foreach ($as as $index => $a) {
-            yield [$a, $bs[$index]];
+            //@todo this default to null behavior is probably not compliant with every rule ever ??
+            yield [$a, $bs[$index] ?? null];
         }
     };
 }

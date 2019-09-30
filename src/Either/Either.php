@@ -18,7 +18,7 @@ abstract /* sealed */ class Either
      * @phan-return Either<A, C>
      *
      * @param callable $f
-     * @return mixed
+     * @return Either
      */
     abstract public function map(callable $f): Either;
 
@@ -28,7 +28,7 @@ abstract /* sealed */ class Either
      * @phan-return Either<A, C>
      *
      * @param callable $f
-     * @return mixed
+     * @return Either
      */
     abstract public function flatMap(callable $f): Either;
 
@@ -57,7 +57,7 @@ abstract /* sealed */ class Either
     abstract public function foldLeft($initial, callable $rightOperation);
 
     /**
-     * @param mixed $initial
+     * @param EvalM $initial
      * @param callable $rightOperation
      * @return EvalM
      *
@@ -93,7 +93,7 @@ abstract /* sealed */ class Either
      * @phan-return Either<C, B>
      *
      * @param callable $f
-     * @return mixed
+     * @return Either
      */
     abstract public function mapLeft(callable $f): Either;
 

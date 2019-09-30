@@ -8,7 +8,7 @@ use Iterator;
 
 class LazyIterator implements Iterator
 {
-    /** @var ArrayIterator|null */
+    /** @var Iterator */
     private $internalIterator;
 
     /** @var callable */

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Apply\EvalM;
 
 use RuntimeException;
@@ -8,7 +7,7 @@ use RuntimeException;
 /**
  * Class EvalM
  *
- * @property mixed value
+ * @property mixed $value
  */
 abstract class EvalM
 {
@@ -42,6 +41,7 @@ abstract class EvalM
                 }
             } else {
                 if (count($fs) > 0) {
+                    /** @var callable $fun */
                     $fun = array_shift($fs);
                     $curr = $fun($curr->value);
                 } else {

@@ -40,6 +40,8 @@
       "src/Collection/Curried/Foldl.php",
       "src/Collection/Imperative/Foldl1.php",
       "src/Collection/Curried/Foldl1.php",
+      "src/Collection/Imperative/LastOrNull.php",
+      "src/Collection/Curried/LastOrNull.php",
       "src/Collection/Imperative/Map.php",
       "src/Collection/Curried/Map.php",
       "src/Collection/Imperative/SortOn.php",
@@ -70,6 +72,7 @@
     ]
   },
   "require-dev": {
+    "phpstan/phpstan": "^0.11.16",
     "codeception/codeception": "^3.0",
     "friendsofphp/php-cs-fixer": "^2.15",
     "phpunit/phpunit": "8.1.*",

@@ -6,7 +6,7 @@ namespace Apply\EvalM;
 /**
  * Class Now
  *
- * @property mixed value
+ * @property mixed $value
  */
 class Now extends EvalM
 {

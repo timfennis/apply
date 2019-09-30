@@ -156,4 +156,14 @@ final class LazyOption extends Option
     {
         return $this->option()->foldRight($initialValue, $callable);
     }
+
+    public function orNull()
+    {
+        return $this->option()->orNull();
+    }
+
+    public function fold(callable $ifEmpty, callable $ifSome)
+    {
+        return $this->option()->fold($ifEmpty, $ifSome);
+    }
 }
