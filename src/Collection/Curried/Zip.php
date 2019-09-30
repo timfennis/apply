@@ -2,7 +2,10 @@
 
 namespace Apply\Collection\Curried;
 
+use ArrayIterator;
 use Generator;
+use Iterator;
+use MultipleIterator;
 
 /**
  * zip :: [a] -> [b] -> [(a, b)]
@@ -13,9 +16,11 @@ use Generator;
 function zip(iterable $as): callable
 {
     return static function (iterable $bs) use ($as): Generator {
-        foreach ($as as $index => $a) {
-            //@todo this default to null behavior is probably not compliant with every rule ever ??
-            yield [$a, $bs[$index] ?? null];
+        $i = new MultipleIterator();
+        $i->attachIterator($as instanceof Iterator ? $as : new ArrayIterator($as));
+        $i->attachIterator($bs instanceof Iterator ? $bs : new ArrayIterator($bs));
+        foreach ($i as $values) {
+            yield $values;
         }
     };
 }

@@ -3,9 +3,28 @@ kind: pipeline
 name: default
 
 steps:
+  - name: composer
+    image: php:7.3-alpine
+    commands:
+      - composer install
+
+  - name: phpstan
+    image: php:7.3-alpine
+    commands:
+      - bin/phpstan analyze src/ --level=max
+    depends_on:
+      - composer
+
+  - name: php-cs-fixer
+    image: php:7.3-alpine
+    commands:
+      - bin/php-cs-fixer fix --dry-run --diff src/
+    depends_on:
+      - composer
+
   - name: codeception
     image: php:7.3-alpine
-    commans:
-      - bin/phpstan analyze src/ --level=max
-      - bin/php-cs-fixer fix --dry-run --diff src/
+    commands:
       - bin/codecept run unit
+    depends_on:
+      - composer

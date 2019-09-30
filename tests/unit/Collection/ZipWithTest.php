@@ -2,9 +2,9 @@
 
 namespace Test\Apply\Functional\Collection;
 
-use function Apply\Collection\Imperative\zip;
-use function Apply\Collection\Imperative\zipWith;
+use Apply\Collection\Sequence\Sequence;
 use Codeception\Test\Unit;
+use function Apply\Collection\Imperative\zipWith;
 
 class ZipWithTest extends Unit
 {
@@ -16,5 +16,21 @@ class ZipWithTest extends Unit
         $this->assertSame([5, 7, 9], iterator_to_array(zipWith($a, $b, static function ($a, $b) {
             return $a + $b;
         })));
+    }
+
+    public function testWithSequence(): void
+    {
+        $concat = static function($a, $b) {
+            return $a . $b;
+        };
+
+        $a = ['Prefix: ', '1: ', 'B: '];
+        $b = Sequence::fromThenTo(1,2);
+
+        $this->assertSame([
+            'Prefix: 1',
+            '1: 2',
+            'B: 3',
+        ], iterator_to_array(zipWith($a, $b, $concat)));
     }
 }
