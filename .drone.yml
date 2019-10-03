@@ -38,4 +38,6 @@ steps:
         - 'coverage.xml'
       paths:
         - 'tests/_output/'
+    depends_on:
+      - codeception
 
