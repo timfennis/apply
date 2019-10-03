@@ -35,9 +35,9 @@ steps:
     settings:
       token: '1c185a5a-f857-4eee-a767-7050032363d7'
       files:
-        - 'coverage.xml'
+        - '*.xml'
       paths:
-        - 'tests/_output/coverage'
+        - 'tests/_output'
     depends_on:
       - codeception
 
