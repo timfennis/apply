@@ -56,6 +56,26 @@ class TryMTest extends Unit
 
 
         $this->assertSame(7, $try->fold(constant(null), Functions::identity));
+
+        // Test that exists works like expected
+        $this->assertTrue($try->exists(static function ($a) {
+            return $a === 7;
+        }));
+
+        $this->assertSame(7, $try->getOrDefault(1337));
+    }
+
+    public function testIsStatusFunctions()
+    {
+        $s = TryM::just(1);
+        $f = Trym::raiseError(new RuntimeException('Oopsiewoopsie'));
+
+        $this->assertTrue($s->isSuccess());
+        $this->assertFalse($s->isFailure());
+
+        $this->assertFalse($f->isSuccess());
+        $this->assertTrue($f->isFailure());
+
     }
 
     public function testJustConstructor(): void
@@ -71,5 +91,23 @@ class TryMTest extends Unit
 
         $this->assertInstanceOf(RuntimeException::class, $e);
         $this->assertSame('This is an error', $e->getMessage());
+        $this->assertFalse($try->exists(constant(true)));
+        $this->assertSame(1337, $try->getOrElse(static function () {
+            return 1337;
+        }));
+
+        $this->assertSame(1337, $try->getOrDefault(1337));
     }
+
+    public function testBindingOverFailure(): void
+    {
+        $try = TryM::raiseError(new RuntimeException('We\'re screwed'));
+        $result = $try->flatMap(static function () {
+            return TryM::just(1);
+        });
+        $this->assertSame($try, $result);
+
+
+    }
+
 }
