@@ -23,8 +23,19 @@ steps:
       - composer
 
   - name: codeception
-    image: php:7.3-alpine
+    # For now we use this relatively unpopular image because it has PHP 7.3 and XDEBUG
+    image: mileschou/xdebug:7.3
     commands:
-      - bin/codecept run unit
+      - bin/codecept run unit --coverage-xml
     depends_on:
       - composer
+
+  - name: upload coverage
+    image: plugins/codecov
+    settings:
+      token: '1c185a5a-f857-4eee-a767-7050032363d7'
+      files:
+        - 'coverage.xml'
+      paths:
+        - 'tests/_output/'
+
