@@ -7,11 +7,11 @@ use Generator;
 
 /**
  * @param iterable $iterable
- * @param int $item
+ * @param int $amount
  *
  * @return Generator
  */
-function drop(iterable $iterable, int $item): Generator
+function drop(iterable $iterable, int $amount): Generator
 {
-    yield from curriedDrop($item)($iterable);
+    yield from curriedDrop($amount)($iterable);
 }

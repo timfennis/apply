@@ -17,7 +17,7 @@ function drop(int $amount): callable
 {
     return static function (iterable $collection) use ($amount): Generator {
         foreach ($collection as $key => $value) {
-            if ($amount-- === 0) {
+            if ($amount-- > 0) {
                 continue;
             }
 
