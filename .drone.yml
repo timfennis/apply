@@ -37,7 +37,7 @@ steps:
       files:
         - 'coverage.xml'
       paths:
-        - 'tests/_output/'
+        - 'tests/_output/coverage'
     depends_on:
       - codeception
 
