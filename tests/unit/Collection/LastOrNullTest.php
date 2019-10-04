@@ -4,8 +4,10 @@
 namespace Test\Apply\Functional\Collection;
 
 
+use Apply\Collection\Sequence\Sequence;
 use Codeception\Test\Unit;
 use function Apply\Collection\Imperative\lastOrNull;
+use function Apply\Collection\iteratorOf;
 
 class LastOrNullTest extends Unit
 {
@@ -22,12 +24,29 @@ class LastOrNullTest extends Unit
         }));
     }
 
+    public function testThatArrayPerformanceIsOptimal()
+    {
+        $timesCalled = 0;
+        $array = [1, 2, 3, 4, 5, 6, 7, 8, 10];
+        $function = static function ($a) use (&$timesCalled) {
+            $timesCalled++;
+            return true;
+        };
+
+        $result = lastOrNull($array, $function);
+
+        $this->assertSame(10, $result);
+        $this->assertSame(1, $timesCalled);
+    }
+
     public function lastOrNullDataProvider()
     {
         return [
-            [[4,5,6],6],
+            [[4, 5, 6], 6],
             [[], null],
-            [[1,2,3], null]
+            [[1, 2, 3], null],
+            [Sequence::fromThenTo(1, 2, 10), 10],
+            [iteratorOf([9, 8, 7, 6, 5, 4, 3, 2, 1]), 6],
         ];
     }
 }

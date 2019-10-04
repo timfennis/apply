@@ -2,7 +2,7 @@
 
 namespace Apply\Collection;
 
-use InvalidArgumentException;
+use Apply\Exception\InvalidArgumentException;
 
 /**
  * last :: [a] -> a
@@ -13,17 +13,27 @@ use InvalidArgumentException;
  */
 function last(iterable $collection)
 {
-    $match = null;
-    $empty = true;
+    if (is_array($collection)) {
+        $key = array_key_last($collection);
+        if ($key !== null) {
+            return $collection[$key];
+        } else {
+            throw new InvalidArgumentException('Last cannot operate on an empty list');
+        }
+    } else {
 
-    foreach ($collection as $item) {
-        $empty = false;
-        $match = $item;
+        $match = null;
+        $empty = true;
+
+        foreach ($collection as $item) {
+            $empty = false;
+            $match = $item;
+        }
+
+        if ($empty === true) {
+            throw new InvalidArgumentException('Last cannot operate on an empty list');
+        }
+
+        return $match;
     }
-
-    if ($empty === true) {
-        throw new InvalidArgumentException('Head cannot operate on an empty list');
-    }
-
-    return $match;
 }
