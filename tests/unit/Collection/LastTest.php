@@ -5,6 +5,7 @@ namespace Test\Apply\Functional\Collection;
 
 
 use Apply\Exception\InvalidArgumentException;
+use ArrayIterator;
 use Codeception\Test\Unit;
 use function Apply\Collection\iteratorOf;
 use function Apply\Collection\last;
@@ -37,6 +38,8 @@ class LastTest extends Unit
         return [
             [[1,2,3,4,5,6,7,8,10], 10],
             [[1], 1],
+            [iteratorOf([1,2,3,4,5]), 5],
+            [iteratorOf([1]), 1],
         ];
     }
 
@@ -45,7 +48,7 @@ class LastTest extends Unit
         return [
             [[]],
             [iteratorOf([])],
-            [new \ArrayIterator([])]
+            [new ArrayIterator([])]
         ];
     }
 
