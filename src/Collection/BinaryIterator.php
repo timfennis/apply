@@ -20,7 +20,7 @@ class BinaryIterator implements Iterator
 
     public function current()
     {
-        return $this->string[$this->pos];
+        return substr($this->string, $this->pos, 1);
     }
 
     public function next()
@@ -35,7 +35,7 @@ class BinaryIterator implements Iterator
 
     public function valid()
     {
-        return $this->pos <= strlen($this->string);
+        return $this->pos < strlen($this->string);
     }
 
     public function rewind()
