@@ -18,7 +18,7 @@ function lastOrNull(callable $predicate): callable
                 if ($predicate(current($collection), key($collection), $collection)) {
                     return current($collection);
                 }
-            } while(prev($collection) !== false);
+            } while (prev($collection) !== false);
 
             return null;
         } else {
@@ -33,4 +33,3 @@ function lastOrNull(callable $predicate): callable
         }
     };
 }
-

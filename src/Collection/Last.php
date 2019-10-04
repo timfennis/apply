@@ -21,7 +21,6 @@ function last(iterable $collection)
             throw new InvalidArgumentException('Last cannot operate on an empty list');
         }
     } else {
-
         $match = null;
         $empty = true;
 
