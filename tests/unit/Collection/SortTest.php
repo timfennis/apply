@@ -3,10 +3,13 @@
 
 namespace Test\Apply\Functional\Collection;
 
+use Apply\Collection\Sequence\Sequence;
 use function Apply\Collection\Imperative\sortBy;
 use function Apply\Collection\Imperative\sortOn;
 use function Apply\Collection\sort;
 use Codeception\Test\Unit;
+use function Apply\Fun\Curried\operator;
+use function Apply\Fun\uncurry;
 
 class SortTest extends Unit
 {
@@ -56,5 +59,10 @@ class SortTest extends Unit
         };
 
         $this->assertSame([1,-2,3,-4,5,-6,7,-8], sortBy($list, $sorter));
+    }
+
+    public function testSortByWithSequence(): void
+    {
+        $this->assertSame([1,2,3,4,5,6], sortBy(Sequence::fromThenTo(1,2,6), uncurry(operator('<=>'))));
     }
 }
