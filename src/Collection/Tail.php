@@ -14,7 +14,7 @@ use InvalidArgumentException;
  *
  * @throws InvalidArgumentException if the list is completely empty
  *
- * @return mixed
+ * @return Generator
  */
 function tail(iterable $collection): Generator
 {

@@ -30,6 +30,7 @@
       "src/Collection/Curried/Cons.php",
       "src/Collection/Imperative/Drop.php",
       "src/Collection/Curried/Drop.php",
+      "src/Collection/Curried/Elem.php",
       "src/Collection/Imperative/Filter.php",
       "src/Collection/Curried/Filter.php",
       "src/Collection/Imperative/FirstOrNull.php",
