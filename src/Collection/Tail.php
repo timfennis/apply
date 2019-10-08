@@ -2,6 +2,7 @@
 
 namespace Apply\Collection;
 
+use Generator;
 use InvalidArgumentException;
 
 /**
@@ -15,7 +16,7 @@ use InvalidArgumentException;
  *
  * @return mixed
  */
-function tail(iterable $collection)
+function tail(iterable $collection): Generator
 {
     $first = true;
     foreach ($collection as $item) {

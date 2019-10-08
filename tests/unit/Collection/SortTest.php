@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Test\Apply\Functional\Collection;
+namespace Test\Apply\Unit\Collection;
 
 use Apply\Collection\Sequence\Sequence;
 use function Apply\Collection\Imperative\sortBy;

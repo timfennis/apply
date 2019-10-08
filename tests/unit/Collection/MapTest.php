@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Test\Apply\Functional\Collection;
+namespace Test\Apply\Unit\Collection;
 
 use function Apply\Collection\Imperative\map;
 use Codeception\Test\Unit;

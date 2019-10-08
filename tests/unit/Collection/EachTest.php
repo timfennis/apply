@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Test\Apply\Functional\Collection;
+namespace Test\Apply\Unit\Collection;
 
 use function Apply\Collection\each;
 use Codeception\Test\Unit;

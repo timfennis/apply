@@ -15,7 +15,7 @@ use InvalidArgumentException;
  * @throws InvalidArgumentException if the list is completely empty
  *
  * @return mixed
-    */
+ */
 function head(iterable $collection)
 {
     foreach ($collection as $item) {

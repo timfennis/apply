@@ -63,6 +63,7 @@
       "src/Collection/Sort.php",
       "src/Collection/ToArray.php",
       "src/Collection/Tail.php",
+      "src/Collection/Unique.php",
       "src/Fun/Curried/Flip.php",
       "src/Fun/Curried/Operator.php",
       "src/Fun/Uncurry.php",

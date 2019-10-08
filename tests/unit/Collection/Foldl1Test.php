@@ -1,6 +1,6 @@
 <?php
 
-namespace Test\Apply\Functional\Collection;
+namespace Test\Apply\Unit\Collection;
 
 use Apply\Exception\InvalidArgumentException;
 use Codeception\Test\Unit;
