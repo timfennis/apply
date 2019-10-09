@@ -6,6 +6,8 @@ use Apply\Either\Either;
 use Apply\Either\Left;
 use Apply\Either\Right;
 use Apply\Functions;
+use Apply\Option\None;
+use Apply\Option\Some;
 use Codeception\Test\Unit;
 use function Apply\constant;
 
@@ -95,7 +97,50 @@ class EitherTest extends Unit
         }));
     }
 
-    public function flatMapDataProvider()
+    public function testExist(): void
+    {
+        $isTen = function ($a) {
+            return $a === 10;
+        };
+
+        $left = new Left(10);
+        $this->assertFalse($left->exists($isTen));
+
+        $right = new Right(10);
+        $this->assertTrue($right->exists($isTen));
+    }
+
+    public function testToOption(): void
+    {
+        $this->assertInstanceOf(None::class, (new Left(1))->toOption());
+        $this->assertInstanceOf(Some::class, (new Right(1))->toOption());
+        $this->assertSame(1, (new Right(1))->toOption()->get());
+    }
+
+
+    public function testGetOrElse(): void
+    {
+        $leftCalled = false;
+        $rightCalled = false;
+
+        $left = new Left(10);
+        $leftResponse = $left->getOrElse(static function () use (&$leftCalled) {
+            $leftCalled = true;
+            return 123;
+        });
+
+        $right = new Right(10);
+        $rightResponse = $right->getOrElse(static function () use (&$rightCalled) {
+            $rightCalled = true;
+        });
+
+        $this->assertTrue($leftCalled);
+        $this->assertFalse($rightCalled);
+        $this->assertSame(123, $leftResponse);
+        $this->assertSame(10, $rightResponse);
+    }
+
+    public function flatMapDataProvider(): array
     {
         return [
             [new Left(5), new Left(1), null],
