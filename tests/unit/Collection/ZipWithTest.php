@@ -20,12 +20,12 @@ class ZipWithTest extends Unit
 
     public function testWithSequence(): void
     {
-        $concat = static function($a, $b) {
+        $concat = static function ($a, $b) {
             return $a . $b;
         };
 
         $a = ['Prefix: ', '1: ', 'B: '];
-        $b = Sequence::fromThenTo(1,2);
+        $b = Sequence::fromThenTo(1, 2);
 
         $this->assertSame([
             'Prefix: 1',

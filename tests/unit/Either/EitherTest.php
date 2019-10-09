@@ -27,17 +27,25 @@ class EitherTest extends Unit
 
     public function testMap()
     {
-        $right = (new Right(5))->map(static function ($a) { return $a + 5; });
+        $right = (new Right(5))->map(static function ($a) {
+            return $a + 5;
+        });
         $this->assertSame(10, $right->orNull());
 
-        $left = (new Left(5))->map(static function ($a) { return $a + 5; });
+        $left = (new Left(5))->map(static function ($a) {
+            return $a + 5;
+        });
         $this->assertNull($left->orNull());
     }
 
     public function testBimap()
     {
         $value = (new Left(5))
-            ->bimap(static function ($a) { return $a + 10; }, static function ($a) { return -100; })
+            ->bimap(static function ($a) {
+                return $a + 10;
+            }, static function ($a) {
+                return -100;
+            })
             ->getOrHandle(Functions::identity);
 
         $this->assertSame(15, $value);
@@ -73,10 +81,18 @@ class EitherTest extends Unit
     public function testFold()
     {
         $left = new Left(10);
-        $this->assertSame(5, $left->fold(static function ($a) { return $a - 5; }, static function ($a) { return $a + 5; }));
+        $this->assertSame(5, $left->fold(static function ($a) {
+            return $a - 5;
+        }, static function ($a) {
+            return $a + 5;
+        }));
 
         $right = new Right(10);
-        $this->assertSame(15, $right->fold(static function ($a) { return $a - 5; }, static function ($a) { return $a + 5; }));
+        $this->assertSame(15, $right->fold(static function ($a) {
+            return $a - 5;
+        }, static function ($a) {
+            return $a + 5;
+        }));
     }
 
     public function flatMapDataProvider()

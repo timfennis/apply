@@ -3,7 +3,6 @@
 
 namespace Test\Apply\Unit\Collection;
 
-
 use Apply\Exception\InvalidArgumentException;
 use ArrayIterator;
 use Codeception\Test\Unit;
@@ -51,5 +50,4 @@ class LastTest extends Unit
             [new ArrayIterator([])]
         ];
     }
-
 }

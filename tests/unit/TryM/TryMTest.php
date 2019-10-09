@@ -75,7 +75,6 @@ class TryMTest extends Unit
 
         $this->assertFalse($f->isSuccess());
         $this->assertTrue($f->isFailure());
-
     }
 
     public function testJustConstructor(): void
@@ -106,8 +105,5 @@ class TryMTest extends Unit
             return TryM::just(1);
         });
         $this->assertSame($try, $result);
-
-
     }
-
 }

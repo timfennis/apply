@@ -3,7 +3,6 @@
 
 namespace Test\Apply\Unit\Collection;
 
-
 use Apply\Collection\Sequence\Sequence;
 use Codeception\Test\Unit;
 use function Apply\Collection\Imperative\firstOrNull;
@@ -32,7 +31,7 @@ class FirstOrNullTest extends Unit
             [[1,2,3], null],
             [[], null],
             [[11,12,13], 11],
-            [Sequence::fromThenTo(10,1), 10]
+            [Sequence::fromThenTo(10, 1), 10]
         ];
     }
 }

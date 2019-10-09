@@ -3,7 +3,6 @@
 
 namespace Test\Apply\Unit\Collection;
 
-
 use Apply\Collection\Sequence\Sequence;
 use Codeception\Test\Unit;
 use function Apply\Collection\Imperative\filter;
@@ -28,7 +27,7 @@ class FilterTest extends Unit
 
     public function testThatItDoesntCrashWithInfiniteSequences()
     {
-        $result = filter(Sequence::fromThenTo(1,2), static function (int $number) {
+        $result = filter(Sequence::fromThenTo(1, 2), static function (int $number) {
             return $number < 10;
         });
 
@@ -44,6 +43,4 @@ class FilterTest extends Unit
             [[10],[10]]
         ];
     }
-
-
 }

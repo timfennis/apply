@@ -3,7 +3,6 @@
 
 namespace Test\Apply\Unit\Collection;
 
-
 use Codeception\Test\Unit;
 use function Apply\Collection\maximum;
 

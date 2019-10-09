@@ -28,6 +28,5 @@ class ZipTest extends Unit
         $a = [1,2,3,4];
         $b = Sequence::fromThenTo(1, 2);
         $this->assertSame([[1,1],[2,2],[3,3],[4,4]], iterator_to_array(zip($a, $b)));
-
     }
 }

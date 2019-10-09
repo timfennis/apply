@@ -3,7 +3,6 @@
 
 namespace Test\Apply\Unit\Collection;
 
-
 use Apply\Collection\LazyIterator;
 use Apply\Collection\Sequence\Sequence;
 use Codeception\Test\Unit;
@@ -47,7 +46,7 @@ class LazyIteratorTest extends Unit
     {
         return [
             [[1,2,3], 1],
-            [Sequence::fromThenTo(1,2), 1],
+            [Sequence::fromThenTo(1, 2), 1],
             [iteratorOf([1,2,3]), 1],
         ];
     }

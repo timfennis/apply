@@ -3,7 +3,6 @@
 
 namespace Test\Apply\Unit\Collection;
 
-
 use Apply\Collection\Sequence\Sequence;
 use Codeception\Test\Unit;
 use function Apply\Collection\Imperative\lastOrNull;

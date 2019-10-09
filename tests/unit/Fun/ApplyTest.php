@@ -29,5 +29,4 @@ class ApplyTest extends Unit
     {
         $this->assertSame(10, apply(\Apply\constant(10))());
     }
-
 }

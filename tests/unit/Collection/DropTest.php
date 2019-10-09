@@ -3,7 +3,6 @@
 
 namespace Test\Apply\Unit\Collection;
 
-
 use Apply\Collection\Sequence\Sequence;
 use Codeception\Test\Unit;
 use function Apply\Collection\head;
@@ -33,7 +32,7 @@ class DropTest extends Unit
      */
     public function testDroppingFromSequence()
     {
-        $this->assertSame(11, head(drop(Sequence::fromThenTo(1,2), 10)));
+        $this->assertSame(11, head(drop(Sequence::fromThenTo(1, 2), 10)));
     }
 
     public function dropProvider()

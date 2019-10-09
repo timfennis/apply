@@ -3,7 +3,6 @@
 
 namespace Test\Apply\Unit\Collection;
 
-
 use Codeception\Test\Unit;
 use function Apply\Collection\toArray;
 use function Apply\Collection\unique;
@@ -36,6 +35,4 @@ class UniqueTest extends Unit
             [[1.0, 5.0/2, 2.5], [1.0,2.5]]
         ];
     }
-
-
 }

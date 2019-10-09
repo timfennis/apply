@@ -3,7 +3,6 @@
 
 namespace Test\Apply\Unit\Collection;
 
-
 use Codeception\Test\Unit;
 use function Apply\Collection\Imperative\foldl;
 
@@ -17,7 +16,9 @@ class FoldlTest extends Unit
      */
     public function testFoldlWithAdd(array $input, int $expectedResult)
     {
-        $add = static function ($a, $b) { return $a + $b; };
+        $add = static function ($a, $b) {
+            return $a + $b;
+        };
 
         $result = foldl($input, $add, 0);
 

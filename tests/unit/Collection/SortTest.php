@@ -63,6 +63,6 @@ class SortTest extends Unit
 
     public function testSortByWithSequence(): void
     {
-        $this->assertSame([1,2,3,4,5,6], sortBy(Sequence::fromThenTo(1,2,6), uncurry(operator('<=>'))));
+        $this->assertSame([1,2,3,4,5,6], sortBy(Sequence::fromThenTo(1, 2, 6), uncurry(operator('<=>'))));
     }
 }
