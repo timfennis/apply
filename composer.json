@@ -67,6 +67,7 @@
       "src/Collection/Unique.php",
       "src/Fun/Curried/Flip.php",
       "src/Fun/Curried/Operator.php",
+      "src/Fun/Apply.php",
       "src/Fun/Uncurry.php",
       "src/Identity.php",
       "src/Constant.php",
