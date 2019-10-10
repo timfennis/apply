@@ -185,8 +185,8 @@ $computeA = fn() => Option::fromValue(1);
 $computeB = fn() => Option::fromValue(5);
 
 $sum = Option::binding(static function () use ($computeA, $computeB) {
-    $a = yield $computeA;
-    $b = yield $computeB;
+    $a = yield $computeA();
+    $b = yield $computeB();
     return $a + $b;
 }); 
 
