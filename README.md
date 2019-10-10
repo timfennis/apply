@@ -147,7 +147,55 @@ Instead of using `string` as type directly you probably want to define your own 
 
 ### EvalM
 
-Wrapper around a lazy computation. Not sure if this is ever useful
+Wrapper around a lazy computation.
+
+## Monad Comprehensions
+
+Many programming languages have a form of monad comprehensions but they go by different names with slightly different
+implementations. In Haskell you have the 'do notation', in Scala you have for-comprehensions and in JavaScript you can 
+use async/await to accomplish similar results.
+
+In PHP we don't have much use for asynchronous programming and IO monads, but the syntax of monad comprehensions can
+still offer us a way to combine the results of many monads in an elegant way.
+
+First let's look at one example that doesn't look very nice. Here we have two computations that can fail in some way.
+In order to combine the results of these computations whe have to take them out of the 'package' that they came in, 
+combine the results and wrap them back up. Your code may look something like this.
+
+```php
+$computeA = fn() => Option::fromValue(1);
+$computeB = fn() => Option::fromValue(5);
+
+$sum = $computeA()->flatMap(static function ($a) use ($computeB) {
+    return $computeB()->flatMap(static function ($b) use ($a) {
+        return new Some($a + $b);
+    });
+});
+
+$sum; // Some(6)
+```
+
+Now this is already pretty terrible but imagine you want to combine the result of 3 or even 10 options, welcome in 
+callback hell.
+
+The solution:
+
+```php
+$computeA = fn() => Option::fromValue(1);
+$computeB = fn() => Option::fromValue(5);
+
+$sum = Option::binding(static function () use ($computeA, $computeB) {
+    $a = yield $computeA;
+    $b = yield $computeB;
+    return $a + $b;
+}); 
+
+$sum; // Some(6)
+```
+
+That looks a lot more like the kind of code that you want to write! It's not perfect because we have to wrap the whole
+thing in a callable and pass that to the `binding` function. But it's much easier to read then our first example. 
+Especially if the amount of computations increases.
 
 ## License
 
