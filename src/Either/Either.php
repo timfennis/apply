@@ -4,7 +4,9 @@
 namespace Apply\Either;
 
 use Apply\EvalM\EvalM;
+use Apply\Functions;
 use Apply\Option\Option;
+use Generator;
 
 /**
  * @template A
@@ -161,11 +163,42 @@ abstract /* sealed */ class Either
     abstract public function getOrHandle(callable $default);
 
     /**
-     * @phan-param callable(A): Either<A, B>
+     * @phan-param callable(A): Either<A, B> $handler
      * @phan-return Either<A, B>
      *
      * @param callable $handler
      * @return Either
      */
     abstract public function handleErrorWith(callable $handler): Either;
+
+    /**
+     * @template E
+     * @template R
+     * @phan-param callable(): R $body
+     * @phan-return Either<E, R>
+     *
+     * @param callable $body
+     *
+     * @return Either
+     */
+    public static function binding(callable $body): Either
+    {
+        /** @var Generator $generator */
+        $generator = $body();
+
+        /** @var Either $current */
+        $current = $generator->current();
+
+        do {
+            if ($current instanceof Right) {
+                $current = $generator->send($current->fold(Functions::identity, Functions::identity));
+            }
+
+            if ($current instanceof Left) {
+                return $current;
+            }
+        } while ($generator->valid());
+
+        return new Right($generator->getReturn());
+    }
 }

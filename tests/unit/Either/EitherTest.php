@@ -149,4 +149,39 @@ class EitherTest extends Unit
             [new Right(5), new Right(6), 6],
         ];
     }
+
+    /**
+     * @dataProvider eitherBindingDataProvider
+     *
+     * @param Either $a
+     * @param Either $b
+     * @param Either $expectedResult
+     */
+    public function testEitherBinding(Either $a, Either $b, Either $expectedResult)
+    {
+        $result = Either::binding(static function () use ($a, $b) {
+            $x = yield $a;
+            $y = yield $b;
+
+            return $x + $y;
+        });
+
+        if ($expectedResult->isLeft()) {
+            $this->assertTrue($result->isLeft());
+        } else {
+            $this->assertTrue($result->isRight());
+        }
+
+        $this->assertEquals($expectedResult, $result);
+    }
+
+    public function eitherBindingDataProvider()
+    {
+        return [
+            [new Left(1), new Left(1), new Left(1)],
+            [new Left(1), new Right(1), new Left(1)],
+            [new Right(1), new Left(1), new Left(1)],
+            [new Right(1), new Right(1), new Right(2)],
+        ];
+    }
 }
