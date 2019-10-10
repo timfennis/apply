@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Apply\TryM;
+namespace Apply\Attempt;
 
 use Throwable;
 
-final class Failure extends TryM
+final class Failure extends Attempt
 {
     /** @var Throwable */
     private $error;
@@ -15,7 +15,7 @@ final class Failure extends TryM
         $this->error = $error;
     }
 
-    public function flatMap(callable $callable): TryM
+    public function flatMap(callable $callable): Attempt
     {
         return $this;
     }

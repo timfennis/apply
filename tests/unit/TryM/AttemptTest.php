@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Test\Apply\TryM;
+namespace Test\Apply\Attempt;
 
 use Apply\Functions;
-use Apply\TryM\TryM;
+use Apply\Attempt\Attempt;
 use Codeception\Test\Unit;
 use Exception;
 use RuntimeException;
@@ -12,11 +12,11 @@ use Throwable;
 use function \Apply\constant;
 use function foo\func;
 
-class TryMTest extends Unit
+class AttemptTest extends Unit
 {
     public function testWithRuntimeException(): void
     {
-        $try = TryM::of(static function () {
+        $try = Attempt::of(static function () {
             throw new RuntimeException('Hello this is the runtime exception');
         });
 
@@ -41,7 +41,7 @@ class TryMTest extends Unit
 
     public function testMappingOverSuccess(): void
     {
-        $try = TryM::of(static function () {
+        $try = Attempt::of(static function () {
             return 5;
         });
         $try = $try->map(static function ($n) {
@@ -51,7 +51,7 @@ class TryMTest extends Unit
         $this->assertSame(6, $try->fold(constant(null), Functions::identity));
 
         $try = $try->flatMap(static function ($n) {
-            return TryM::of(static function () use ($n) {
+            return Attempt::of(static function () use ($n) {
                 return $n + 1;
             });
         });
@@ -69,8 +69,8 @@ class TryMTest extends Unit
 
     public function testIsStatusFunctions()
     {
-        $s = TryM::just(1);
-        $f = Trym::raiseError(new RuntimeException('Oopsiewoopsie'));
+        $s = Attempt::just(1);
+        $f = Attempt::raiseError(new RuntimeException('Oopsiewoopsie'));
 
         $this->assertTrue($s->isSuccess());
         $this->assertFalse($s->isFailure());
@@ -81,13 +81,13 @@ class TryMTest extends Unit
 
     public function testJustConstructor(): void
     {
-        $try = TryM::just(5);
+        $try = Attempt::just(5);
         $this->assertSame(5, $try->fold(constant(null), Functions::identity));
     }
 
     public function testRaiseErrorConstructor(): void
     {
-        $try = TryM::raiseError(new RuntimeException('This is an error'));
+        $try = Attempt::raiseError(new RuntimeException('This is an error'));
         $e = $try->fold(Functions::identity, constant(null));
 
         $this->assertInstanceOf(RuntimeException::class, $e);
@@ -102,9 +102,9 @@ class TryMTest extends Unit
 
     public function testBindingOverFailure(): void
     {
-        $try = TryM::raiseError(new RuntimeException('We\'re screwed'));
+        $try = Attempt::raiseError(new RuntimeException('We\'re screwed'));
         $result = $try->flatMap(static function () {
-            return TryM::just(1);
+            return Attempt::just(1);
         });
         $this->assertSame($try, $result);
     }
@@ -112,13 +112,13 @@ class TryMTest extends Unit
     /**
      * @dataProvider monadBindingProvider
      *
-     * @param TryM $a
-     * @param TryM $b
+     * @param Attempt $a
+     * @param Attempt $b
      * @param $expectedResult
      */
-    public function testMonadBinding(TryM $a, TryM $b, $expectedResult): void
+    public function testMonadBinding(Attempt $a, Attempt $b, $expectedResult): void
     {
-        $result = TryM::binding(static function () use ($a, $b) {
+        $result = Attempt::binding(static function () use ($a, $b) {
             $x = yield $a;
             $y = yield $b;
 
@@ -147,10 +147,10 @@ class TryMTest extends Unit
     public function monadBindingProvider()
     {
         return [
-            [TryM::just(1), TryM::just(2), 3],
-            [TryM::raiseError(new RuntimeException('error')), TryM::just(2), 'error'],
-            [TryM::just(2), TryM::raiseError(new RuntimeException('error')), 'error'],
-            [TryM::raiseError(new RuntimeException('error1')), TryM::raiseError(new RuntimeException('error2')), 'error1'],
+            [Attempt::just(1), Attempt::just(2), 3],
+            [Attempt::raiseError(new RuntimeException('error')), Attempt::just(2), 'error'],
+            [Attempt::just(2), Attempt::raiseError(new RuntimeException('error')), 'error'],
+            [Attempt::raiseError(new RuntimeException('error1')), Attempt::raiseError(new RuntimeException('error2')), 'error1'],
         ];
     }
 }

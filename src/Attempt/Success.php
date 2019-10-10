@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Apply\TryM;
+namespace Apply\Attempt;
 
-final class Success extends TryM
+final class Success extends Attempt
 {
     /** @var mixed */
     private $value;
@@ -13,7 +13,7 @@ final class Success extends TryM
         $this->value = $value;
     }
 
-    public function flatMap(callable $f): TryM
+    public function flatMap(callable $f): Attempt
     {
         return $f($this->value);
     }

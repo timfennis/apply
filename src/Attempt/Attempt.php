@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Apply\TryM;
+namespace Apply\Attempt;
 
 use Apply\Functions;
 use Apply\Option\None;
@@ -12,11 +12,11 @@ use Throwable;
 use function \Apply\constant;
 
 /**
- * Class TryM
+ * Class Attempt
  *
  * @internal this class is only supposed te be extended by Success and Failure
  */
-abstract class TryM
+abstract class Attempt
 {
     public static function of(callable $callable)
     {
@@ -37,7 +37,7 @@ abstract class TryM
         return new Success($value);
     }
 
-    public function map(callable $f): TryM
+    public function map(callable $f): Attempt
     {
         return $this->flatMap(static function ($value) use ($f) {
             return new Success($f($value));
@@ -81,19 +81,19 @@ abstract class TryM
 
     /**
      * @template A
-     * @phan-param callable(): TryM<A> $callable
-     * @phan-return TryM<A>
+     * @phan-param callable(): Attempt<A> $callable
+     * @phan-return Attempt<A>
      *
      * @param callable $callable
      *
-     * @return TryM
+     * @return Attempt
      */
-    public static function binding(callable $callable): TryM
+    public static function binding(callable $callable): Attempt
     {
         /** @var Generator $generator */
         $generator = $callable();
 
-        /** @var TryM $current */
+        /** @var Attempt $current */
         $current = $generator->current();
 
         do {
@@ -106,6 +106,6 @@ abstract class TryM
             }
         } while ($generator->valid());
 
-        return TryM::just($generator->getReturn());
+        return Attempt::just($generator->getReturn());
     }
 }

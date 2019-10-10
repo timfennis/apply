@@ -3,9 +3,9 @@
 namespace Apply\EvalM;
 
 use Apply\Functions;
-use Apply\TryM\Failure;
-use Apply\TryM\Success;
-use Apply\TryM\TryM;
+use Apply\Attempt\Failure;
+use Apply\Attempt\Success;
+use Apply\Attempt\Attempt;
 use Generator;
 use RuntimeException;
 

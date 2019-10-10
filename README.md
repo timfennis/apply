@@ -83,12 +83,12 @@ have to understand them in order to (ab)use them though.
 
 ### Try
 
-`TryM` represents the result of a computation that can either have a result when the computation was successful or
+`Attempt` represents the result of a computation that can either have a result when the computation was successful or
 an exception if something went wrong. If the computation went correctly you get a `Success<A>` containing the result and 
 if the computation goes wrong you get a `Failure` containing the exception.
 
-`TryM` looks a lot like `Either` but is especially useful in situation where you have to consume some library or 
-language feature that throws unwanted exception. `TryM` can be used to to capture exceptions and performing computations
+`Attempt` looks a lot like `Either` but is especially useful in situation where you have to consume some library or 
+language feature that throws unwanted exception. `Attempt` can be used to to capture exceptions and performing computations
 on the result without having to build complicated and verbose `try-catch` blocks. 
 
 ```php
@@ -96,7 +96,7 @@ function loadFromAPI() {
     throw new InvalidAuthenticationCredentialsException('Your authentication credentials are invalid');
 }
 
-$tryLoad = TryM::of(fn() => loadFromAPI());
+$tryLoad = Attempt::of(fn() => loadFromAPI());
 $result = $tryLoad->getOrDefault(null); // returns null
 
 if ($tryLoad->isFailure()) {
@@ -107,7 +107,7 @@ if ($tryLoad->isFailure()) {
 Most often you may want to fold over the computation
 
 ```php
-$tryLoad = TryM::of(fn() => rollTheDice());
+$tryLoad = Attempt::of(fn() => rollTheDice());
 
 $number = $tryLoad->fold(
     fn(Throwable $t) => 0,
