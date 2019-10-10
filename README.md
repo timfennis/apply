@@ -3,7 +3,7 @@
 [![codecov](https://codecov.io/gh/timfennis/apply/branch/master/graph/badge.svg)](https://codecov.io/gh/timfennis/apply)
 [![build](https://drone.timfennis.com/api/badges/timfennis/apply/status.svg?branch=master)](https://drone.timfennis.com/timfennis/apply)
 
-Apply is a *PHP Library* that aims to promote and bring functional programming ideas from different languages and 
+Apply is a **PHP Library** that aims to promote and bring functional programming ideas from different languages and 
 libraries such as Haskell, Scala, Kotlin, Arrow and Cats to PHP.
 
 This library is designed to be used with PHP 7.4 which does not have a stable release yet. The documentation uses some
