@@ -22,11 +22,14 @@
 
 namespace Apply\Option;
 
-use Closure;
 use Exception;
+use Generator;
 use IteratorAggregate;
-use RuntimeException;
 
+/**
+ * Class Option
+ * @template T
+ */
 abstract class Option implements IteratorAggregate
 {
     public static function fromValue($value, $noneValue = null): Option
@@ -44,38 +47,6 @@ abstract class Option implements IteratorAggregate
             return None::create();
         }
         return new Some($array[$key]);
-    }
-
-    public static function fromReturn($callback, array $arguments = array(), $noneValue = null): LazyOption
-    {
-        return new LazyOption(static function () use ($callback, $arguments, $noneValue) {
-            $return = $callback(...$arguments);
-            if ($return === $noneValue) {
-                return None::create();
-            }
-            return new Some($return);
-        });
-    }
-
-    public static function ensure($value, $noneValue = null): Option
-    {
-        if ($value instanceof self) {
-            return $value;
-        }
-
-        if (is_callable($value)) {
-            return new LazyOption(static function () use ($value, $noneValue) {
-                $return = $value();
-
-                if ($return instanceof Option) {
-                    return $return;
-                }
-
-                return Option::fromValue($return, $noneValue);
-            });
-        }
-
-        return self::fromValue($value, $noneValue);
     }
 
     abstract public function orNull();
@@ -113,4 +84,34 @@ abstract class Option implements IteratorAggregate
     abstract public function foldRight($initialValue, callable $callable);
 
     abstract public function fold(callable $ifEmpty, callable $ifSome);
+
+    /**
+     * @template A
+     * @phan-param callable(): Option<A> $callable
+     * @phan-return Option<A>
+     *
+     * @param callable $callable
+     *
+     * @return Option
+     */
+    public static function binding(callable $callable): Option
+    {
+        /** @var Generator $generator */
+        $generator = $callable();
+
+        /** @var Option $current */
+        $current = $generator->current();
+
+        do {
+            if ($current instanceof Some) {
+                $current = $generator->send($current->get());
+            }
+
+            if ($current instanceof None) {
+                return $current;
+            }
+        } while ($generator->valid());
+
+        return Option::fromValue($generator->getReturn());
+    }
 }

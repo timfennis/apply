@@ -3,7 +3,6 @@
 
 namespace Test\Apply\Fun;
 
-
 use Codeception\Test\Unit;
 use function Apply\Collection\toArray;
 use function Apply\Fun\Curried\operator;

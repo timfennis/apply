@@ -2,6 +2,11 @@
 
 namespace Apply\EvalM;
 
+use Apply\Functions;
+use Apply\TryM\Failure;
+use Apply\TryM\Success;
+use Apply\TryM\TryM;
+use Generator;
 use RuntimeException;
 
 /**
@@ -40,6 +45,7 @@ abstract class EvalM
                     $curr = $currComp->run($cc->value);
                 }
             } else {
+                /** @noinspection PhpSeparateElseIfInspection */
                 if (count($fs) > 0) {
                     /** @var callable $fun */
                     $fun = array_shift($fs);
@@ -184,5 +190,38 @@ abstract class EvalM
     public static function later(callable $callable): Later
     {
         return new Later($callable);
+    }
+
+    public static function lazyBinding(callable $callable): EvalM
+    {
+        return EvalM::later(static function () use ($callable) {
+
+            /** @var Generator $generator */
+            $generator = $callable();
+
+            /** @var EvalM $current */
+            $current = $generator->current();
+
+            while ($generator->valid()) {
+                $current = $generator->send($current->value());
+            }
+
+            return $generator->getReturn();
+        });
+    }
+
+    public static function binding(callable $callable): EvalM
+    {
+        /** @var Generator $generator */
+        $generator = $callable();
+
+        /** @var EvalM $current */
+        $current = $generator->current();
+
+        while ($generator->valid()) {
+            $current = $generator->send($current->value());
+        }
+
+        return EvalM::now($generator->getReturn());
     }
 }

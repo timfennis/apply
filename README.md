@@ -10,6 +10,18 @@ of the new syntax (particularly the short closure syntax) for brevity.
 
 The library is currently very much a work in progress. Everything could change at any moment.
 
+## Contributing
+
+I'm currently looking for ideas, suggestions, criticisms and contributions. The library is very much in a draft state,
+some of the functions probably don't work they way they 'should' and test coverage is still only 50ish percent.
+
+* If you have any ideas for functional programming concepts that could work well in PHP, please open an issue or PR and 
+get involved.
+* If you see any functions that don't work the way they should, or could be improved performance wise feel free to open
+a PR or issue and let me now!
+* If you have any ideas, long term visions, or do you just think this whole library is stupid? Feel free to open an 
+issue and let me know! 
+
 ## Curried Functions
  
 ### Collections

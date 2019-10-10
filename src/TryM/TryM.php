@@ -7,6 +7,7 @@ use Apply\Functions;
 use Apply\Option\None;
 use Apply\Option\Option;
 use Apply\Option\Some;
+use Generator;
 use Throwable;
 use function \Apply\constant;
 
@@ -76,5 +77,35 @@ abstract class TryM
         }, static function ($value) {
             return Some::fromValue($value);
         });
+    }
+
+    /**
+     * @template A
+     * @phan-param callable(): TryM<A> $callable
+     * @phan-return TryM<A>
+     *
+     * @param callable $callable
+     *
+     * @return TryM
+     */
+    public static function binding(callable $callable): TryM
+    {
+        /** @var Generator $generator */
+        $generator = $callable();
+
+        /** @var TryM $current */
+        $current = $generator->current();
+
+        do {
+            if ($current instanceof Success) {
+                $current = $generator->send($current->fold(Functions::identity, Functions::identity));
+            }
+
+            if ($current instanceof Failure) {
+                return $current;
+            }
+        } while ($generator->valid());
+
+        return TryM::just($generator->getReturn());
     }
 }

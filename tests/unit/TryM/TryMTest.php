@@ -8,7 +8,9 @@ use Apply\TryM\TryM;
 use Codeception\Test\Unit;
 use Exception;
 use RuntimeException;
+use Throwable;
 use function \Apply\constant;
+use function foo\func;
 
 class TryMTest extends Unit
 {
@@ -105,5 +107,50 @@ class TryMTest extends Unit
             return TryM::just(1);
         });
         $this->assertSame($try, $result);
+    }
+
+    /**
+     * @dataProvider monadBindingProvider
+     *
+     * @param TryM $a
+     * @param TryM $b
+     * @param $expectedResult
+     */
+    public function testMonadBinding(TryM $a, TryM $b, $expectedResult): void
+    {
+        $result = TryM::binding(static function () use ($a, $b) {
+            $x = yield $a;
+            $y = yield $b;
+
+            return $x + $y;
+        });
+
+        if ($result->isFailure()) {
+            $this->assertTrue($result->isFailure());
+
+            $result->fold(function (Throwable $exception) use ($expectedResult) {
+                $this->assertSame($expectedResult, $exception->getMessage());
+            }, function ($_) {
+                $this->fail('This callable should not be called');
+            });
+        }
+
+        if ($result->isSuccess()) {
+            $this->assertTrue($result->isSuccess());
+
+            $this->assertSame($expectedResult, $result->getOrElse(function () {
+                $this->fail('This callable should not be called');
+            }));
+        }
+    }
+
+    public function monadBindingProvider()
+    {
+        return [
+            [TryM::just(1), TryM::just(2), 3],
+            [TryM::raiseError(new RuntimeException('error')), TryM::just(2), 'error'],
+            [TryM::just(2), TryM::raiseError(new RuntimeException('error')), 'error'],
+            [TryM::raiseError(new RuntimeException('error1')), TryM::raiseError(new RuntimeException('error2')), 'error1'],
+        ];
     }
 }

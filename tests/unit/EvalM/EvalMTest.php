@@ -8,17 +8,59 @@ use Apply\EvalM\EvalM;
 
 class EvalMTest extends Unit
 {
-    /**
-     * @var FunctionalTester
-     */
-    protected $tester;
-    
-    protected function _before()
+    public function testLazyBinding()
     {
+        $aCalled = false;
+        $functionA = function () use (&$aCalled) {
+            $aCalled = true;
+            return 5;
+        };
+
+        $bCalled = false;
+        $functionB = function () use (&$bCalled) {
+            $bCalled = true;
+            return 6;
+        };
+
+        $result = EvalM::lazyBinding(static function () use ($functionA, $functionB) {
+            $a = yield EvalM::later($functionA);
+            $b = yield EvalM::later($functionB);
+            return $a + $b;
+        });
+
+        $this->assertFalse($aCalled);
+        $this->assertFalse($bCalled);
+
+        $this->assertSame(11, $result->value);
+
+        $this->assertTrue($aCalled);
+        $this->assertTrue($bCalled);
     }
 
-    protected function _after()
+    public function testNonLazyBinding()
     {
+        $aCalled = false;
+        $functionA = function () use (&$aCalled) {
+            $aCalled = true;
+            return 5;
+        };
+
+        $bCalled = false;
+        $functionB = function () use (&$bCalled) {
+            $bCalled = true;
+            return 6;
+        };
+
+        $result = EvalM::binding(static function () use ($functionA, $functionB) {
+            $a = yield EvalM::later($functionA);
+            $b = yield EvalM::later($functionB);
+            return $a + $b;
+        });
+
+        $this->assertTrue($aCalled);
+        $this->assertTrue($bCalled);
+
+        $this->assertSame(11, $result->value);
     }
 
     // tests
