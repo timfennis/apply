@@ -2,8 +2,6 @@
 
 namespace Apply\Fun;
 
-use Closure;
-
 /**
  * @param callable $callable
  * @param mixed ...$arguments

@@ -8,7 +8,7 @@ use InvalidArgumentException;
 /**
  * head :: [a] -> a
  *
- * Extract the first element of a list, which must be non-empty.
+ * Extract the first element of a list, which must be non-empty. use firstOrNull if you want to accept empty lists.
  *
  * @param iterable $collection
  *

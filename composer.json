@@ -66,6 +66,7 @@
       "src/Collection/Tail.php",
       "src/Collection/Unique.php",
       "src/Fun/Curried/Flip.php",
+      "src/Fun/Imperative/Flip.php",
       "src/Fun/Curried/Operator.php",
       "src/Fun/Apply.php",
       "src/Fun/Uncurry.php",

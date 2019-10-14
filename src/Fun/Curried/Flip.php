@@ -7,7 +7,7 @@ namespace Apply\Fun\Curried;
  *
  * flip f takes its (first) two arguments in the reverse order of f.
  *
- * I actually have no idea if this has any practical usages in PHP
+ * This version flips the arguments of a curried function and returns a flipped curried function.
  *
  * @param callable $f
  *
@@ -17,7 +17,7 @@ function flip(callable $f): callable
 {
     return static function ($a) use ($f) {
         return static function ($b) use ($f, $a) {
-            return $f($b, $a);
+            return $f($b)($a);
         };
     };
 }
