@@ -179,4 +179,31 @@ class EitherTest extends Unit
             [new Right(1), new Right(1), new Right(2)],
         ];
     }
+
+    public function testLeftIfNull()
+    {
+        // Test with non-null right
+        $e = new Right(1);
+        $e = $e->leftIfNull(fn () => 1);
+        $this->assertInstanceOf(Right::class, $e);
+
+        // Test with left
+        $e = new Left(1);
+        $e = $e->leftIfNull(fn () => 1);
+        $this->assertInstanceOf(Left::class, $e);
+
+        // Test with null
+        $e = new Right(null);
+        $e = $e->leftIfNull(fn () => new \RuntimeException('NULL'));
+        $this->assertInstanceOf(Left::class, $e);
+        $wasCalled = false;
+        $e->handleErrorWith(function ($value) use (&$wasCalled) {
+            $wasCalled = true;
+            $this->assertInstanceOf(\RuntimeException::class, $value);
+
+            return new Right(1);
+        });
+
+        $this->assertTrue($wasCalled, 'Failed asserting that the callable was called');
+    }
 }

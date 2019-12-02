@@ -135,6 +135,13 @@ abstract /* sealed */ class Either
     abstract public function handleErrorWith(callable $handler): Either;
 
     /**
+     * @template B
+     * @phan-param callable(): A $default
+     * @phan-return Either<A, B>
+     */
+    abstract public function leftIfNull(callable $default): Either;
+
+    /**
      * @template E
      * @template R
      * @phan-param callable(): R $body

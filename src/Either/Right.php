@@ -109,4 +109,11 @@ class Right extends Either
     {
         return $this;
     }
+
+    public function leftIfNull(callable $default): Either
+    {
+        return null === $this->value
+            ? new Left($default())
+            : $this;
+    }
 }

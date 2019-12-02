@@ -51,18 +51,12 @@ class AttemptTest extends Unit
 
         $this->assertSame(6, $try->fold(constant(null), Functions::identity));
 
-        $try = $try->flatMap(static function ($n) {
-            return Attempt::of(static function () use ($n) {
-                return $n + 1;
-            });
-        });
+        $try = $try->flatMap(static fn ($n) => Attempt::of(static fn () => $n + 1));
 
         $this->assertSame(7, $try->fold(constant(null), Functions::identity));
 
         // Test that exists works like expected
-        $this->assertTrue($try->exists(static function ($a) {
-            return 7 === $a;
-        }));
+        $this->assertTrue($try->exists(static fn ($a) => 7 === $a));
 
         $this->assertSame(7, $try->getOrDefault(1337));
     }
@@ -93,9 +87,7 @@ class AttemptTest extends Unit
         $this->assertInstanceOf(RuntimeException::class, $e);
         $this->assertSame('This is an error', $e->getMessage());
         $this->assertFalse($try->exists(constant(true)));
-        $this->assertSame(1337, $try->getOrElse(static function () {
-            return 1337;
-        }));
+        $this->assertSame(1337, $try->getOrElse(static fn () => 1337));
 
         $this->assertSame(1337, $try->getOrDefault(1337));
     }
@@ -103,9 +95,7 @@ class AttemptTest extends Unit
     public function testBindingOverFailure(): void
     {
         $try = Attempt::raiseError(new RuntimeException('We\'re screwed'));
-        $result = $try->flatMap(static function () {
-            return Attempt::just(1);
-        });
+        $result = $try->flatMap(static fn () => Attempt::just(1));
         $this->assertSame($try, $result);
     }
 
@@ -126,19 +116,16 @@ class AttemptTest extends Unit
         if ($result->isFailure()) {
             $this->assertTrue($result->isFailure());
 
-            $result->fold(function (Throwable $exception) use ($expectedResult) {
-                $this->assertSame($expectedResult, $exception->getMessage());
-            }, function ($_) {
-                $this->fail('This callable should not be called');
-            });
+            $result->fold(
+                fn (Throwable $exception) => $this->assertSame($expectedResult, $exception->getMessage()),
+                fn ($_) => $this->fail('This callable should not be called')
+            );
         }
 
         if ($result->isSuccess()) {
             $this->assertTrue($result->isSuccess());
 
-            $this->assertSame($expectedResult, $result->getOrElse(function () {
-                $this->fail('This callable should not be called');
-            }));
+            $this->assertSame($expectedResult, $result->getOrElse(fn () => $this->fail('This callable should not be called')));
         }
     }
 
