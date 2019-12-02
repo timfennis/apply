@@ -1,20 +1,19 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Test\Apply\Unit\Collection;
 
-use Apply\Collection\Sequence\Sequence;
-use Codeception\Test\Unit;
 use function Apply\Collection\Imperative\filter;
 use function Apply\Collection\Imperative\take;
+use Apply\Collection\Sequence\Sequence;
 use function Apply\Collection\toArray;
+use Codeception\Test\Unit;
 
 class FilterTest extends Unit
 {
     /**
      * @dataProvider filterDataProvider
-     * @param array $input
-     * @param array $expectedResult
      */
     public function testFiltering(array $input, array $expectedResult)
     {
@@ -31,16 +30,16 @@ class FilterTest extends Unit
             return $number < 10;
         });
 
-        $this->assertEquals([1,2,3], toArray(take($result, 3)));
+        $this->assertEquals([1, 2, 3], toArray(take($result, 3)));
     }
 
     public function filterDataProvider()
     {
         return [
-            [[1,2,3,4,5,6,7,8,9], [6,7,8,9]],
-            [[1,2,3,4],[]],
-            [[],[]],
-            [[10],[10]]
+            [[1, 2, 3, 4, 5, 6, 7, 8, 9], [6, 7, 8, 9]],
+            [[1, 2, 3, 4], []],
+            [[], []],
+            [[10], [10]],
         ];
     }
 }

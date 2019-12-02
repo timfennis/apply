@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This code is derived from schmittjoh/php-option
  *
@@ -27,7 +29,8 @@ use Generator;
 use IteratorAggregate;
 
 /**
- * Class Option
+ * Class Option.
+ *
  * @template T
  */
 abstract class Option implements IteratorAggregate
@@ -46,6 +49,7 @@ abstract class Option implements IteratorAggregate
         if (!isset($array[$key])) {
             return None::create();
         }
+
         return new Some($array[$key]);
     }
 
@@ -89,10 +93,6 @@ abstract class Option implements IteratorAggregate
      * @template A
      * @phan-param callable(): Option<A> $callable
      * @phan-return Option<A>
-     *
-     * @param callable $callable
-     *
-     * @return Option
      */
     public static function binding(callable $callable): Option
     {

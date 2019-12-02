@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Collection\Imperative;
 
 use function Apply\Collection\Curried\foldl as curriedFoldl;
 
 /**
- * @param iterable $iterable
  * @param mixed $initial
- * @param callable $callable
  *
  * @return mixed
  */

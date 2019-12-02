@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Apply\Unit\Collection;
 
 use function Apply\Collection\reverse;
@@ -12,7 +14,7 @@ class ReverseTest extends Unit
 {
     public function testWithArray()
     {
-        $this->assertSame([3,2,1], toArray(reverse([1,2,3])));
+        $this->assertSame([3, 2, 1], toArray(reverse([1, 2, 3])));
     }
 
     public function testWithStringIterator()
@@ -22,6 +24,6 @@ class ReverseTest extends Unit
 
     public function testWithArrayIterator()
     {
-        $this->assertSame([5,4,3,2,1], toArray(reverse(new ArrayIterator([1,2,3,4,5]))));
+        $this->assertSame([5, 4, 3, 2, 1], toArray(reverse(new ArrayIterator([1, 2, 3, 4, 5]))));
     }
 }

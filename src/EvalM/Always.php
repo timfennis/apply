@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Apply\EvalM;
 
@@ -8,9 +9,6 @@ class Always extends EvalM
     /** @var callable */
     private $callable;
 
-    /**
-     * @param callable $callable
-     */
     protected function __construct(callable $callable)
     {
         $this->callable = $callable;

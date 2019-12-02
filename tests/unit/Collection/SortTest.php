@@ -1,15 +1,16 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Test\Apply\Unit\Collection;
 
-use Apply\Collection\Sequence\Sequence;
 use function Apply\Collection\Imperative\sortBy;
 use function Apply\Collection\Imperative\sortOn;
+use Apply\Collection\Sequence\Sequence;
 use function Apply\Collection\sort;
-use Codeception\Test\Unit;
 use function Apply\Fun\Curried\operator;
 use function Apply\Fun\uncurry;
+use Codeception\Test\Unit;
 
 class SortTest extends Unit
 {
@@ -47,22 +48,22 @@ class SortTest extends Unit
             ['value' => 1],
             ['value' => 2],
             ['value' => 3],
-            ['value' => 8]
+            ['value' => 8],
         ], sortOn($list, $accessor));
     }
 
     public function testSortBy(): void
     {
-        $list = [-8,-6,-4,-2,1,3,5,7];
+        $list = [-8, -6, -4, -2, 1, 3, 5, 7];
         $sorter = static function ($l, $r) {
             return abs($l) <=> abs($r);
         };
 
-        $this->assertSame([1,-2,3,-4,5,-6,7,-8], sortBy($list, $sorter));
+        $this->assertSame([1, -2, 3, -4, 5, -6, 7, -8], sortBy($list, $sorter));
     }
 
     public function testSortByWithSequence(): void
     {
-        $this->assertSame([1,2,3,4,5,6], sortBy(Sequence::fromThenTo(1, 2, 6), uncurry(operator('<=>'))));
+        $this->assertSame([1, 2, 3, 4, 5, 6], sortBy(Sequence::fromThenTo(1, 2, 6), uncurry(operator('<=>'))));
     }
 }

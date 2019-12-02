@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Apply\Option;
 
 use Apply\Option\None;
@@ -25,8 +27,6 @@ class OptionTest extends Unit
     /**
      * @dataProvider optionProvider
      *
-     * @param Option $a
-     * @param Option $b
      * @param $expectedResult
      */
     public function testOptionBindingWithNoneValues(Option $a, Option $b, Option $expectedResult)
@@ -37,7 +37,6 @@ class OptionTest extends Unit
 
             return $aResult + $bResult;
         });
-
 
         if ($expectedResult instanceof None) {
             $this->assertInstanceOf(None::class, $endResult);

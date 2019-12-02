@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Apply\EvalM;
 
 /**
- * Class Now
+ * Class Now.
  *
  * @property mixed $value
  */

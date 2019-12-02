@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Apply\Unit\Collection;
 
 use function Apply\Collection\Imperative\all;

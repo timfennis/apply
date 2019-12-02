@@ -1,28 +1,25 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Apply\Collection\Sequence;
 
-use Iterator;
 use Apply\Exception\InvalidArgumentException;
+use Iterator;
 
 class Sequence implements Iterator
 {
-    /** @var int */
-    private $start;
+    private int $start;
 
-    /** @var int */
-    private $value;
+    private int $value;
 
-    /** @var int|null */
-    private $limit;
+    private ?int $limit;
 
-    /** @var int */
-    private $step;
+    private int $step;
 
     public function __construct(int $from, ?int $to = null, int $step = 1)
     {
-        if ($to !== null  && $from !== null && $to < $from) {
+        if (null !== $to && null !== $from && $to < $from) {
             throw new InvalidArgumentException('Sequences cannot count down');
         }
 
@@ -47,10 +44,9 @@ class Sequence implements Iterator
         return $this->value - $this->start;
     }
 
-
     public function valid()
     {
-        return $this->limit === null || $this->limit >= $this->value;
+        return null === $this->limit || $this->limit >= $this->value;
     }
 
     public function rewind()
@@ -60,6 +56,6 @@ class Sequence implements Iterator
 
     public static function fromThenTo(int $from, int $then, ?int $to = null): Sequence
     {
-        return new self($from, $to, $then-$from);
+        return new self($from, $to, $then - $from);
     }
 }

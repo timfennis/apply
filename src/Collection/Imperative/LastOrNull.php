@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Collection\Imperative;
 
 use function Apply\Collection\Curried\lastOrNull as lastOrNullCurried;

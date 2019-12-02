@@ -1,13 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Collection\Curried;
 
 /**
- * foldl :: (b -> a -> b) -> b -> [a] -> b
- *
- * @param callable $callable
- *
- * @return callable
+ * foldl :: (b -> a -> b) -> b -> [a] -> b.
  */
 function foldl(callable $callable): callable
 {

@@ -1,10 +1,13 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Test\Apply\Unit\Collection;
 
-use Codeception\Test\Unit;
 use function Apply\Collection\Imperative\flatMap;
 use function Apply\constant;
 use Apply\Functions;
+use Codeception\Test\Unit;
 
 class FlatMapTest extends Unit
 {
@@ -20,7 +23,7 @@ class FlatMapTest extends Unit
 
     public function testWithEmptyLists(): void
     {
-        $list = [[],[],[]];
+        $list = [[], [], []];
 
         $outList = flatMap($list, Functions::identity);
 
@@ -29,19 +32,19 @@ class FlatMapTest extends Unit
 
     public function testWitHEmptyAndNonEmptyLists(): void
     {
-        $list = [[1,2,3],[],[4,5,6],[]];
+        $list = [[1, 2, 3], [], [4, 5, 6], []];
 
         $outList = flatMap($list, Functions::identity);
 
-        $this->assertSame([1,2,3,4,5,6], iterator_to_array($outList, false));
+        $this->assertSame([1, 2, 3, 4, 5, 6], iterator_to_array($outList, false));
     }
 
     public function testFunStuff()
     {
-        $list = [1,2,3];
+        $list = [1, 2, 3];
 
-        $outList = flatMap($list, constant([1,2,3]));
+        $outList = flatMap($list, constant([1, 2, 3]));
 
-        $this->assertSame([1,2,3,1,2,3,1,2,3], iterator_to_array($outList, false));
+        $this->assertSame([1, 2, 3, 1, 2, 3, 1, 2, 3], iterator_to_array($outList, false));
     }
 }

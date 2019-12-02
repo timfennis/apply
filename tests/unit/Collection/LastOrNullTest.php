@@ -1,20 +1,18 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Test\Apply\Unit\Collection;
 
-use Apply\Collection\Sequence\Sequence;
-use Codeception\Test\Unit;
 use function Apply\Collection\Imperative\lastOrNull;
 use function Apply\Collection\iteratorOf;
+use Apply\Collection\Sequence\Sequence;
+use Codeception\Test\Unit;
 
 class LastOrNullTest extends Unit
 {
     /**
      * @dataProvider lastOrNullDataProvider
-     *
-     * @param iterable $collection
-     * @param int|null $expectedResult
      */
     public function testLastOrNull(iterable $collection, ?int $expectedResult)
     {
@@ -28,7 +26,8 @@ class LastOrNullTest extends Unit
         $timesCalled = 0;
         $array = [1, 2, 3, 4, 5, 6, 7, 8, 10];
         $function = static function ($a) use (&$timesCalled) {
-            $timesCalled++;
+            ++$timesCalled;
+
             return true;
         };
 

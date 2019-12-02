@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This code is derived from schmittjoh/php-option
  *
@@ -28,7 +30,7 @@ use RuntimeException;
 
 final class None extends Option
 {
-    private static $instance;
+    private static ?None $instance = null;
 
     private function __construct()
     {
@@ -39,6 +41,7 @@ final class None extends Option
         if (null === self::$instance) {
             self::$instance = new self();
         }
+
         return self::$instance;
     }
 
@@ -49,7 +52,7 @@ final class None extends Option
 
     public function get()
     {
-        throw new RuntimeException(self::class . ' has no value.');
+        throw new RuntimeException(self::class.' has no value.');
     }
 
     public function getOrCall(callable $callable)
@@ -71,6 +74,7 @@ final class None extends Option
     {
         return true;
     }
+
     public function isDefined(): bool
     {
         return false;

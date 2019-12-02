@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Test\Apply\Unit\Collection;
 
+use function Apply\Collection\head;
+use function Apply\Collection\Imperative\map;
+use function Apply\Collection\iteratorOf;
 use Apply\Collection\LazyIterator;
 use Apply\Collection\Sequence\Sequence;
 use Codeception\Test\Unit;
 use Exception;
 use Iterator;
-use function Apply\Collection\head;
-use function Apply\Collection\Imperative\map;
-use function Apply\Collection\iteratorOf;
 
 class LazyIteratorTest extends Unit
 {
@@ -45,9 +46,9 @@ class LazyIteratorTest extends Unit
     public function dataProvider()
     {
         return [
-            [[1,2,3], 1],
+            [[1, 2, 3], 1],
             [Sequence::fromThenTo(1, 2), 1],
-            [iteratorOf([1,2,3]), 1],
+            [iteratorOf([1, 2, 3]), 1],
         ];
     }
 }

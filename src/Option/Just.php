@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Option;
 
 /**
  * @param mixed $value
- *
- * @return Option
  */
 function just($value): Option
 {

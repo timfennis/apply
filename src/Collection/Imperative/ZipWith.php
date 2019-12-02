@@ -1,18 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Collection\Imperative;
 
 use function Apply\Collection\Curried\zipWith as zipWithCurried;
 use Generator;
 
 /**
- * zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
- *
- * @param iterable $a
- * @param iterable $b
- * @param callable $zipper
- *
- * @return Generator
+ * zipWith :: (a -> b -> c) -> [a] -> [b] -> [c].
  */
 function zipWith(iterable $a, iterable $b, callable $zipper): Generator
 {

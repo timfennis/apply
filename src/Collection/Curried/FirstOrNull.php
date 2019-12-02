@@ -1,14 +1,11 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Apply\Collection\Curried;
 
 /**
- * first :: (a -> Bool) -> [a] -> ?a
- *
- * @param callable $predicate
- *
- * @return callable
+ * first :: (a -> Bool) -> [a] -> ?a.
  */
 function firstOrNull(callable $predicate): callable
 {

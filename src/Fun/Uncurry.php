@@ -1,13 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Fun;
 
 /**
- * Transforms a curried function $fn into an uncurried function
- *
- * @param callable $fn
- *
- * @return callable
+ * Transforms a curried function $fn into an uncurried function.
  */
 function uncurry(callable $fn): callable
 {

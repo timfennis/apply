@@ -1,18 +1,18 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Test\Apply\Unit\Collection;
 
-use Codeception\Test\Unit;
-use function Apply\Collection\Imperative\flatMap;
 use function Apply\Collection\Imperative\take;
-use function Apply\constant;
-use Apply\Functions;
+use Codeception\Test\Unit;
 
 class TakeTest extends Unit
 {
     // tests
     public function testTakeFromLongerList(): void
     {
-        $list = [1,2,3,4,5,6,7,8,9,10];
+        $list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         $outList = take($list, 5);
 
@@ -21,7 +21,7 @@ class TakeTest extends Unit
 
     public function testTakeWholeList(): void
     {
-        $list = [1,2,3,4,5];
+        $list = [1, 2, 3, 4, 5];
 
         $outList = take($list, 5);
 
@@ -30,7 +30,7 @@ class TakeTest extends Unit
 
     public function testTakeMoreThenList(): void
     {
-        $list = [1,2,3,4,5];
+        $list = [1, 2, 3, 4, 5];
 
         $outList = take($list, 100);
 

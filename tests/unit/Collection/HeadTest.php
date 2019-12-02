@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Collection;
 
 use Codeception\Test\Unit;
@@ -9,7 +11,7 @@ class HeadTest extends Unit
 {
     public function testWithACoupleOfElements(): void
     {
-        $this->assertSame(1, head([1,2,3]));
+        $this->assertSame(1, head([1, 2, 3]));
     }
 
     public function testWithSingleElement(): void

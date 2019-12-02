@@ -1,18 +1,16 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Test\Apply\Unit\Collection;
 
-use Codeception\Test\Unit;
 use function Apply\Collection\maximum;
+use Codeception\Test\Unit;
 
 class MaximumTest extends Unit
 {
     /**
      * @dataProvider listProvider
-     *
-     * @param array $list
-     * @param int $max
      */
     public function testThatItReturnsTheHighestValueFromAnyPositionInTheList(array $list, int $max): void
     {
@@ -22,9 +20,9 @@ class MaximumTest extends Unit
     public function listProvider()
     {
         return [
-            [[1,2,3], 3],
-            [[1,3,2], 3],
-            [[3,2,1], 3],
+            [[1, 2, 3], 3],
+            [[1, 3, 2], 3],
+            [[3, 2, 1], 3],
         ];
     }
 }

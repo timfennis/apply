@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Collection\Curried;
 
 use ArrayIterator;
@@ -8,10 +10,7 @@ use Iterator;
 use MultipleIterator;
 
 /**
- * zip :: [a] -> [b] -> [(a, b)]
- *
- * @param iterable $as
- * @return callable
+ * zip :: [a] -> [b] -> [(a, b)].
  */
 function zip(iterable $as): callable
 {

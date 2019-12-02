@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Apply\EvalM;
 
@@ -11,8 +12,7 @@ class Later extends EvalM
     /** @var mixed */
     private $value;
 
-    /** @var bool */
-    private $initialized = false;
+    private bool $initialized = false;
 
     protected function __construct(callable $callable)
     {

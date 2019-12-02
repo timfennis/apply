@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Apply\Fun;
 
-use Codeception\Test\Unit;
 use function Apply\Fun\Curried\flip;
+use Codeception\Test\Unit;
 
 class FlipTest extends Unit
 {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Collection;
 
 use Codeception\Test\Unit;
@@ -9,10 +11,10 @@ class TailTest extends Unit
 {
     public function testWithPrettyLongList(): void
     {
-        $list = [1,2,3,4,5];
+        $list = [1, 2, 3, 4, 5];
         $out = tail($list);
 
-        $this->assertSame([2,3,4,5], iterator_to_array($out));
+        $this->assertSame([2, 3, 4, 5], iterator_to_array($out));
     }
 
     public function testWithSingleElementList(): void

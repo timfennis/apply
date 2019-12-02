@@ -1,12 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Collection\Curried;
 
 /**
- * lastOrNull :: (a -> Bool) -> [a] -> ?a
- *
- * @param callable $predicate
- * @return callable
+ * lastOrNull :: (a -> Bool) -> [a] -> ?a.
  */
 function lastOrNull(callable $predicate): callable
 {
@@ -18,7 +17,7 @@ function lastOrNull(callable $predicate): callable
                 if ($predicate(current($collection), key($collection), $collection)) {
                     return current($collection);
                 }
-            } while (prev($collection) !== false);
+            } while (false !== prev($collection));
 
             return null;
         } else {

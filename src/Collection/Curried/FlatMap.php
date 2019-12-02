@@ -1,17 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Collection\Curried;
 
 use Generator;
 
 /**
- * flatMap :: (a -> [b]) -> [a] -> [b]
+ * flatMap :: (a -> [b]) -> [a] -> [b].
  *
  * Functional curried version of flatMap comparable to >>= on lists in haskell
  *
  * @param callable $callable a -> [b]
- *
- * @return callable
  */
 function flatMap(callable $callable): callable
 {

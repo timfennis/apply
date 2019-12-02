@@ -1,7 +1,11 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Apply\Attempt;
+
+use Apply\Either\Either;
+use Apply\Either\Right;
 
 final class Success extends Attempt
 {
@@ -31,5 +35,10 @@ final class Success extends Attempt
     public function fold(callable $ifFailure, callable $ifSuccess)
     {
         return $ifSuccess($this->value);
+    }
+
+    public function toEither(?callable $onLeft = null): Either
+    {
+        return new Right($this->value);
     }
 }

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Apply\Fun;
 
+use function Apply\Fun\apply;
 use Apply\Functions;
 use Codeception\Test\Unit;
-use function Apply\Fun\apply;
 
 class ApplyTest extends Unit
 {

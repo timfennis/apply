@@ -1,18 +1,20 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Apply\Attempt;
 
+use function Apply\constant;
+use Apply\Either\Either;
 use Apply\Functions;
 use Apply\Option\None;
 use Apply\Option\Option;
 use Apply\Option\Some;
 use Generator;
 use Throwable;
-use function \Apply\constant;
 
 /**
- * Class Attempt
+ * Class Attempt.
  *
  * @internal this class is only supposed te be extended by Success and Failure
  */
@@ -44,7 +46,6 @@ abstract class Attempt
         });
     }
 
-
     public function exists(callable $predicate): bool
     {
         return $this->fold(constant(false), static function ($value) use ($predicate): bool {
@@ -70,23 +71,23 @@ abstract class Attempt
 
     abstract public function isFailure(): bool;
 
+    /**
+     * Convenience method to convert an instance of Attempt in to an Either. Because [mapLeft] is often used right after
+     * an toEither call an optional argument [$onLeft] is available to convert the type of the error.
+     *
+     * @param callable|null $onLeft optional function to map over the left value of the either
+     */
+    abstract public function toEither(?callable $onLeft = null): Either;
+
     public function toOption(): Option
     {
-        return $this->fold(static function () {
-            return None::create();
-        }, static function ($value) {
-            return Some::fromValue($value);
-        });
+        return $this->fold(static fn () => None::create(), static fn ($value) => Some::fromValue($value));
     }
 
     /**
      * @template A
      * @phan-param callable(): Attempt<A> $callable
      * @phan-return Attempt<A>
-     *
-     * @param callable $callable
-     *
-     * @return Attempt
      */
     public static function binding(callable $callable): Attempt
     {

@@ -1,16 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Collection;
 
-use Generator;
 use InvalidArgumentException;
 
 /**
- * head :: [a] -> a
+ * head :: [a] -> a.
  *
  * Extract the first element of a list, which must be non-empty. use firstOrNull if you want to accept empty lists.
- *
- * @param iterable $collection
  *
  * @throws InvalidArgumentException if the list is completely empty
  *

@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Apply\Collection;
 
@@ -8,16 +9,12 @@ use InvalidArgumentException;
 use Traversable;
 
 /**
- * reverse :: [a] -> [a]
- *
- * @param iterable $iterable
- *
- * @return Generator
+ * reverse :: [a] -> [a].
  */
 function reverse(iterable $iterable): Generator
 {
     if (is_array($iterable)) {
-        for (end($iterable); key($iterable) !== null; prev($iterable)) {
+        for (end($iterable); null !== key($iterable); prev($iterable)) {
             yield current($iterable);
         }
     } elseif ($iterable instanceof Traversable) {

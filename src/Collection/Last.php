@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Collection;
 
 use Apply\Exception\InvalidArgumentException;
 
 /**
- * last :: [a] -> a
- *
- * @param iterable $collection
+ * last :: [a] -> a.
  *
  * @return mixed|null
  */
@@ -15,7 +15,7 @@ function last(iterable $collection)
 {
     if (is_array($collection)) {
         $key = array_key_last($collection);
-        if ($key !== null) {
+        if (null !== $key) {
             return $collection[$key];
         } else {
             throw new InvalidArgumentException('Last cannot operate on an empty list');
@@ -29,7 +29,7 @@ function last(iterable $collection)
             $match = $item;
         }
 
-        if ($empty === true) {
+        if (true === $empty) {
             throw new InvalidArgumentException('Last cannot operate on an empty list');
         }
 

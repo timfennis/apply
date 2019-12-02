@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Apply\Collection;
 
@@ -7,11 +8,9 @@ use Iterator;
 
 class BinaryIterator implements Iterator
 {
+    private string $string;
 
-    /** @var string */
-    private $string;
-
-    private $pos = 0;
+    private int $pos = 0;
 
     public function __construct(string $string)
     {
@@ -25,7 +24,7 @@ class BinaryIterator implements Iterator
 
     public function next()
     {
-        $this->pos++;
+        ++$this->pos;
     }
 
     public function key()

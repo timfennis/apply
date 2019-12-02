@@ -1,21 +1,22 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Test\Apply\Fun;
 
-use Codeception\Test\Unit;
 use function Apply\Collection\toArray;
 use function Apply\Fun\Curried\operator;
+use Codeception\Test\Unit;
 
 class OperatorTest extends Unit
 {
     /**
      * @dataProvider operatorProvider
      *
-     * @param mixed $left
+     * @param mixed  $left
      * @param string $symbol
-     * @param mixed $right
-     * @param mixed $expectedResult
+     * @param mixed  $right
+     * @param mixed  $expectedResult
      */
     public function testOperator($left, $symbol, $right, $expectedResult)
     {
@@ -26,13 +27,13 @@ class OperatorTest extends Unit
     public function _operatorProvider()
     {
         /** @noinspection PhpExpressionWithSameOperandsInspection */
-        $operators = ['*','/','%','+','-','.','<','<=','>','>=','==','!=','===','!==','&&','||','<=>'];
-        $values = ['1','2','-1','1.5'];
+        $operators = ['*', '/', '%', '+', '-', '.', '<', '<=', '>', '>=', '==', '!=', '===', '!==', '&&', '||', '<=>'];
+        $values = ['1', '2', '-1', '1.5'];
 
         foreach ($operators as $operator) {
             foreach ($values as $left) {
                 foreach ($values as $right) {
-                    yield [$left, $operator, $right, eval('return ' . $left . ' ' . $operator . ' ' . $right .';')];
+                    yield [$left, $operator, $right, eval('return '.$left.' '.$operator.' '.$right.';')];
                 }
             }
         }

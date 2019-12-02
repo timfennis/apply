@@ -1,18 +1,16 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Test\Apply\Unit\Collection;
 
-use Codeception\Test\Unit;
 use function Apply\Collection\Imperative\foldl;
+use Codeception\Test\Unit;
 
 class FoldlTest extends Unit
 {
     /**
      * @dataProvider additionDataProvider
-     *
-     * @param array $input
-     * @param int $expectedResult
      */
     public function testFoldlWithAdd(array $input, int $expectedResult)
     {
@@ -28,9 +26,9 @@ class FoldlTest extends Unit
     public function additionDataProvider()
     {
         return [
-            [[1,2,3,4,5], 15],
+            [[1, 2, 3, 4, 5], 15],
             [[1], 1],
-            [[], 0]
+            [[], 0],
         ];
     }
 }

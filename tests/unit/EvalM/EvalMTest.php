@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Apply\EvalM;
 
-use Codeception\Test\Unit;
-use FunctionalTester;
 use Apply\EvalM\EvalM;
+use Codeception\Test\Unit;
 
 class EvalMTest extends Unit
 {
@@ -13,18 +14,21 @@ class EvalMTest extends Unit
         $aCalled = false;
         $functionA = function () use (&$aCalled) {
             $aCalled = true;
+
             return 5;
         };
 
         $bCalled = false;
         $functionB = function () use (&$bCalled) {
             $bCalled = true;
+
             return 6;
         };
 
         $result = EvalM::lazyBinding(static function () use ($functionA, $functionB) {
             $a = yield EvalM::later($functionA);
             $b = yield EvalM::later($functionB);
+
             return $a + $b;
         });
 
@@ -42,18 +46,21 @@ class EvalMTest extends Unit
         $aCalled = false;
         $functionA = function () use (&$aCalled) {
             $aCalled = true;
+
             return 5;
         };
 
         $bCalled = false;
         $functionB = function () use (&$bCalled) {
             $bCalled = true;
+
             return 6;
         };
 
         $result = EvalM::binding(static function () use ($functionA, $functionB) {
             $a = yield EvalM::later($functionA);
             $b = yield EvalM::later($functionB);
+
             return $a + $b;
         });
 
@@ -70,13 +77,13 @@ class EvalMTest extends Unit
 
         $e = EvalM::later(static function () use (&$modified) {
             $modified = true;
+
             return 5;
         });
 
         $e = $e->map(static function (int $a) {
             return $a + 5;
         });
-
 
         $this->assertFalse($modified);
 
@@ -89,6 +96,7 @@ class EvalMTest extends Unit
 
         $e = EvalM::later(static function () use (&$modified) {
             $modified = true;
+
             return 5;
         });
 
@@ -107,7 +115,7 @@ class EvalMTest extends Unit
     {
         $e = EvalM::now(0);
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 100; ++$i) {
             $e = $e->map(static function ($a) {
                 return $a + 1;
             });

@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Test\Apply\Unit\Collection;
 
@@ -11,7 +12,7 @@ class EachTest extends Unit
     public function testEach()
     {
         $acc = 0;
-        each([1,2,3], static function (int $num) use (&$acc) {
+        each([1, 2, 3], static function (int $num) use (&$acc) {
             $acc += $num;
         });
 

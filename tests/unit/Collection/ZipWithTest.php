@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Apply\Unit\Collection;
 
+use function Apply\Collection\Imperative\zipWith;
 use Apply\Collection\Sequence\Sequence;
 use Codeception\Test\Unit;
-use function Apply\Collection\Imperative\zipWith;
 
 class ZipWithTest extends Unit
 {
@@ -21,7 +23,7 @@ class ZipWithTest extends Unit
     public function testWithSequence(): void
     {
         $concat = static function ($a, $b) {
-            return $a . $b;
+            return $a.$b;
         };
 
         $a = ['Prefix: ', '1: ', 'B: '];

@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Apply\Unit\Collection;
 
-use Apply\Collection\Sequence\Sequence;
 use function Apply\Collection\Imperative\zip;
+use Apply\Collection\Sequence\Sequence;
 use Codeception\Test\Unit;
 
 class ZipTest extends Unit
@@ -18,15 +20,15 @@ class ZipTest extends Unit
 
     public function testWithDifferingLengths(): void
     {
-        $a = [1,2,3,4];
-        $b = [1,2];
-        $this->assertSame([[1,1],[2,2]], iterator_to_array(zip($a, $b)));
+        $a = [1, 2, 3, 4];
+        $b = [1, 2];
+        $this->assertSame([[1, 1], [2, 2]], iterator_to_array(zip($a, $b)));
     }
 
     public function testWithSequence(): void
     {
-        $a = [1,2,3,4];
+        $a = [1, 2, 3, 4];
         $b = Sequence::fromThenTo(1, 2);
-        $this->assertSame([[1,1],[2,2],[3,3],[4,4]], iterator_to_array(zip($a, $b)));
+        $this->assertSame([[1, 1], [2, 2], [3, 3], [4, 4]], iterator_to_array(zip($a, $b)));
     }
 }

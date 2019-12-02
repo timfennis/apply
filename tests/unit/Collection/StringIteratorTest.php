@@ -1,15 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Collection;
 
+use function Apply\Collection\Imperative\take;
 use Codeception\Test\Unit;
 use PHPUnit\Framework\TestCase;
-use function Apply\Collection\Imperative\take;
 
 class StringIteratorTest extends Unit
 {
-
-
     // tests
     public function testWithTake5FromHelloWorld(): void
     {

@@ -1,13 +1,14 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Test\Apply\Unit\Collection;
 
-use Apply\Collection\Sequence\Sequence;
-use Codeception\Test\Unit;
 use function Apply\Collection\head;
 use function Apply\Collection\Imperative\drop;
+use Apply\Collection\Sequence\Sequence;
 use function Apply\Collection\toArray;
+use Codeception\Test\Unit;
 
 class DropTest extends Unit
 {
@@ -16,10 +17,6 @@ class DropTest extends Unit
      *
      * @covers ::\Apply\Collection\Imperative\drop()
      * @covers ::\Apply\Collection\Curried\drop()
-     *
-     * @param array $list
-     * @param int $amount
-     * @param array $result
      */
     public function testThatItDrops(array $list, int $amount, array $result)
     {
@@ -38,7 +35,7 @@ class DropTest extends Unit
     public function dropProvider()
     {
         return [
-            [[1,2,3,4,5,6,7,8,9], 5, [6,7,8,9]],
+            [[1, 2, 3, 4, 5, 6, 7, 8, 9], 5, [6, 7, 8, 9]],
         ];
     }
 }

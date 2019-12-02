@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Test\Apply\Unit\Collection;
 
+use function Apply\Collection\Imperative\firstOrNull;
 use Apply\Collection\Sequence\Sequence;
 use Codeception\Test\Unit;
-use function Apply\Collection\Imperative\firstOrNull;
 
 class FirstOrNullTest extends Unit
 {
@@ -27,11 +28,11 @@ class FirstOrNullTest extends Unit
     public function firstOrNullDataProvider()
     {
         return [
-            [[4,5,6], 6],
-            [[1,2,3], null],
+            [[4, 5, 6], 6],
+            [[1, 2, 3], null],
             [[], null],
-            [[11,12,13], 11],
-            [Sequence::fromThenTo(10, 1), 10]
+            [[11, 12, 13], 11],
+            [Sequence::fromThenTo(10, 1), 10],
         ];
     }
 }

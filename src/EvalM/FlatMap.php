@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Apply\EvalM;
 
@@ -8,10 +9,7 @@ abstract class FlatMap extends EvalM
     abstract public function start(): EvalM;
 
     /**
-     *
      * @param callable $s
-     *
-     * @return EvalM
      *
      * @template S
      * @phan-param callable(S): EvalM<B> $s

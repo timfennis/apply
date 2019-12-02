@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This code is derived from schmittjoh/php-option
  *
@@ -22,11 +24,9 @@
 
 namespace Apply\Option;
 
+use Apply\Exception\InvalidStateException;
 use ArrayIterator;
 use Exception;
-use RuntimeException;
-use Apply\Exception\InvalidStateException;
-use Traversable;
 
 final class Some extends Option
 {
@@ -80,6 +80,7 @@ final class Some extends Option
     public function forAll(callable $callable): Option
     {
         $callable($this->value);
+
         return $this;
     }
 
@@ -94,6 +95,7 @@ final class Some extends Option
         if (false === $rs instanceof Option) {
             throw InvalidStateException::invalidCallableReturnType(Option::class, gettype($rs));
         }
+
         return $rs;
     }
 
@@ -111,6 +113,7 @@ final class Some extends Option
         if (false === $callable($this->value)) {
             return $this;
         }
+
         return None::create();
     }
 
@@ -119,6 +122,7 @@ final class Some extends Option
         if ($this->value === $value) {
             return $this;
         }
+
         return None::create();
     }
 
@@ -127,6 +131,7 @@ final class Some extends Option
         if ($this->value === $value) {
             return None::create();
         }
+
         return $this;
     }
 

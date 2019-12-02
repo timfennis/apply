@@ -1,23 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\EvalM;
 
-use Apply\Functions;
-use Apply\Attempt\Failure;
-use Apply\Attempt\Success;
-use Apply\Attempt\Attempt;
 use Generator;
 use RuntimeException;
 
 /**
- * Class EvalM
+ * Class EvalM.
  *
  * @property mixed $value
  */
 abstract class EvalM
 {
     /**
-     * @param EvalM $e
      * @return mixed
      */
     protected static function evaluate(EvalM $e)
@@ -45,7 +42,7 @@ abstract class EvalM
                     $curr = $currComp->run($cc->value);
                 }
             } else {
-                /** @noinspection PhpSeparateElseIfInspection */
+                /* @noinspection PhpSeparateElseIfInspection */
                 if (count($fs) > 0) {
                     /** @var callable $fun */
                     $fun = array_shift($fs);
@@ -68,18 +65,12 @@ abstract class EvalM
 
     /**
      * WHAT THE FUCK DID I DOO??!??!?
-     *
-     * @param callable $fn
-     *
-     * @return EvalM
      */
     public function flatMap(callable $fn): EvalM
     {
         if ($this instanceof FlatMap) {
             return new class($this, $fn) extends FlatMap {
-
-                /** @var FlatMap */
-                private $outer;
+                private FlatMap $outer;
 
                 /** @var callable */
                 private $fn;
@@ -98,9 +89,7 @@ abstract class EvalM
                 public function run($s): EvalM
                 {
                     return new class($this->outer, $this->fn, $s) extends FlatMap {
-
-                        /** @var FlatMap */
-                        private $outer;
+                        private FlatMap $outer;
                         /** @var callable */
                         private $fn;
                         /** @var mixed */
@@ -127,9 +116,7 @@ abstract class EvalM
             };
         } else {
             return new class($this, $fn) extends FlatMap {
-
-                /** @var EvalM */
-                private $outer;
+                private EvalM $outer;
                 /** @var callable */
                 private $fn;
 
@@ -159,23 +146,22 @@ abstract class EvalM
 
     public function __get($name)
     {
-        if ($name === 'value') {
+        if ('value' === $name) {
             return $this->value();
         }
 
-        throw new RuntimeException('Fuck off');
+        throw new RuntimeException('Invalid property access');
     }
 
     public function __set($name, $value)
     {
-        throw new RuntimeException('Fuck off');
+        throw new RuntimeException('Invalid property access');
     }
 
     public function __isset($name)
     {
-        return $name === 'value';
+        return 'value' === $name;
     }
-
 
     public static function now($value): Now
     {
@@ -195,7 +181,6 @@ abstract class EvalM
     public static function lazyBinding(callable $callable): EvalM
     {
         return EvalM::later(static function () use ($callable) {
-
             /** @var Generator $generator */
             $generator = $callable();
 

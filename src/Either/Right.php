@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Apply\Either;
 
@@ -8,7 +9,7 @@ use Apply\Option\Option;
 use Apply\Option\Some;
 
 /**
- * Class Right
+ * Class Right.
  *
  * @inherits B
  */

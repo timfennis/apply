@@ -1,16 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Apply\Collection;
 
 use Generator;
 use function in_array;
 
 /**
- * unique :: [a] -> [a]
- *
- * @param iterable $collection
- *
- * @return Generator
+ * unique :: [a] -> [a].
  */
 function unique(iterable $collection): Generator
 {

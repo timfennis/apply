@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\Apply\Unit\Either;
 
 use Apply\Either\Either;
@@ -9,7 +11,6 @@ use Apply\Functions;
 use Apply\Option\None;
 use Apply\Option\Some;
 use Codeception\Test\Unit;
-use function Apply\constant;
 
 class EitherTest extends Unit
 {
@@ -67,8 +68,6 @@ class EitherTest extends Unit
     /**
      * @dataProvider flatMapDataProvider
      *
-     * @param Either $either
-     * @param Either $otherEither
      * @param mixed $expectedResult
      */
     public function testFlatMap(Either $either, Either $otherEither, $expectedResult)
@@ -100,7 +99,7 @@ class EitherTest extends Unit
     public function testExist(): void
     {
         $isTen = function ($a) {
-            return $a === 10;
+            return 10 === $a;
         };
 
         $left = new Left(10);
@@ -117,7 +116,6 @@ class EitherTest extends Unit
         $this->assertSame(1, (new Right(1))->toOption()->get());
     }
 
-
     public function testGetOrElse(): void
     {
         $leftCalled = false;
@@ -126,6 +124,7 @@ class EitherTest extends Unit
         $left = new Left(10);
         $leftResponse = $left->getOrElse(static function () use (&$leftCalled) {
             $leftCalled = true;
+
             return 123;
         });
 
@@ -152,10 +151,6 @@ class EitherTest extends Unit
 
     /**
      * @dataProvider eitherBindingDataProvider
-     *
-     * @param Either $a
-     * @param Either $b
-     * @param Either $expectedResult
      */
     public function testEitherBinding(Either $a, Either $b, Either $expectedResult)
     {

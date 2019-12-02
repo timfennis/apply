@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Apply\Either;
 
@@ -8,7 +9,7 @@ use Apply\Option\None;
 use Apply\Option\Option;
 
 /**
- * Class Left
+ * Class Left.
  *
  * @inherits A
  */
@@ -48,7 +49,6 @@ class Left extends Either
     {
         return $initial;
     }
-
 
     public function foldRight(EvalM $initial, callable $rightOperation): EvalM
     {

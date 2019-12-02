@@ -1,14 +1,13 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Apply\Collection\Curried;
 
 /**
- * elem :: a -> [a] -> Bool
+ * elem :: a -> [a] -> Bool.
  *
  * @param mixed $item
- *
- * @return callable
  */
 function elem($item): callable
 {

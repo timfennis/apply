@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Apply\Collection;
 
@@ -9,7 +10,7 @@ use Iterator;
 class LazyIterator implements Iterator
 {
     /** @var Iterator */
-    private $internalIterator;
+    private ?Iterator $internalIterator = null;
 
     /** @var callable */
     private $callable;
@@ -21,7 +22,7 @@ class LazyIterator implements Iterator
 
     private function init(): void
     {
-        if ($this->internalIterator === null) {
+        if (null === $this->internalIterator) {
             $value = ($this->callable)();
 
             if ($value instanceof Iterator) {
@@ -37,9 +38,9 @@ class LazyIterator implements Iterator
     public function current()
     {
         $this->init();
+
         return $this->internalIterator->current();
     }
-
 
     public function next()
     {
@@ -47,20 +48,19 @@ class LazyIterator implements Iterator
         $this->internalIterator->next();
     }
 
-
     public function key()
     {
         $this->init();
+
         return $this->internalIterator->key();
     }
-
 
     public function valid()
     {
         $this->init();
+
         return $this->internalIterator->valid();
     }
-
 
     public function rewind()
     {

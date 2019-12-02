@@ -1,16 +1,17 @@
 <?php
 
+declare(strict_types=1);
 
 namespace Test\Apply\Attempt;
 
-use Apply\Functions;
 use Apply\Attempt\Attempt;
+use function Apply\constant;
+use Apply\Either\Left;
+use Apply\Functions;
 use Codeception\Test\Unit;
 use Exception;
 use RuntimeException;
 use Throwable;
-use function \Apply\constant;
-use function foo\func;
 
 class AttemptTest extends Unit
 {
@@ -56,12 +57,11 @@ class AttemptTest extends Unit
             });
         });
 
-
         $this->assertSame(7, $try->fold(constant(null), Functions::identity));
 
         // Test that exists works like expected
         $this->assertTrue($try->exists(static function ($a) {
-            return $a === 7;
+            return 7 === $a;
         }));
 
         $this->assertSame(7, $try->getOrDefault(1337));
@@ -112,8 +112,6 @@ class AttemptTest extends Unit
     /**
      * @dataProvider monadBindingProvider
      *
-     * @param Attempt $a
-     * @param Attempt $b
      * @param $expectedResult
      */
     public function testMonadBinding(Attempt $a, Attempt $b, $expectedResult): void
@@ -152,5 +150,34 @@ class AttemptTest extends Unit
             [Attempt::just(2), Attempt::raiseError(new RuntimeException('error')), 'error'],
             [Attempt::raiseError(new RuntimeException('error1')), Attempt::raiseError(new RuntimeException('error2')), 'error1'],
         ];
+    }
+
+    public function testToEither()
+    {
+        $a = Attempt::of(fn () => 1);
+        $this->assertTrue($a->toEither()->isRight());
+
+        $b = Attempt::raiseError(new RuntimeException('Kapot'));
+        $this->assertTrue($b->toEither()->isLeft());
+
+        $mustBeCalled = false;
+        $either = $b->toEither(function (RuntimeException $exception) use (&$mustBeCalled) {
+            $mustBeCalled = true;
+
+            return 'It went wrong';
+        });
+
+        $this->assertTrue($mustBeCalled, 'Failed asserting that a lambda was called');
+        $this->assertInstanceOf(Left::class, $either);
+
+        $valueInEither = null;
+        $either->fold(
+            function ($value) use (&$valueInEither) {
+                $valueInEither = $value;
+            },
+            fn ($a) => $a
+        );
+
+        $this->assertSame('It went wrong', $valueInEither);
     }
 }
