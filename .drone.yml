@@ -4,8 +4,7 @@ name: default
 
 steps:
   - name: composer
-    image: composer:1.9
-    pull: true
+    image: composer:1.9.1
     commands:
       - composer install
 
