@@ -231,4 +231,18 @@ class EitherTest extends Unit
         $e = $e->filterOrElse(fn ($i) => $this->fail('this code should not be executed'), fn () => $this->fail('this code should not be executed'));
         $this->assertSame(100, $e->fold(fn ($x) => $x, fn () => $this->fail('this code should not be executed')));
     }
+
+    public function testFilterOrOther()
+    {
+        $e = new Right(10);
+        $e = $e->filterOrOther(
+            fn($num) => $num < 5,
+            fn() => new Left('OOPS')
+        );
+
+        $e->fold(
+            fn($msg) => $this->assertSame('OOPS', $msg),
+            fn($a) => $this->fail('This function must not be called'),
+        );
+    }
 }

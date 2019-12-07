@@ -119,4 +119,9 @@ class Left extends Either
     {
         return $this;
     }
+
+    public function filterOrOther(callable $predicate, callable $default): Either
+    {
+        return $this;
+    }
 }

@@ -148,6 +148,13 @@ abstract /* sealed */ class Either
     abstract public function filterOrElse(callable $predicate, callable $default): Either;
 
     /**
+     * @phan-param callable(): bool $predicate
+     * @phan-param callable(): Left<A> $default
+     * @phan-return Either<A, B>
+     */
+    abstract public function filterOrOther(callable $predicate, callable $default): Either;
+
+    /**
      * @template E
      * @template R
      * @phan-param callable(): R $body
