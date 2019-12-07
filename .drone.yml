@@ -5,18 +5,19 @@ name: default
 steps:
   - name: composer
     image: composer:1.9
+    pull: true
     commands:
       - composer install
 
   - name: phpstan
-    image: php:7.3-alpine
+    image: php:7.4-alpine
     commands:
       - bin/phpstan analyze src/ --level=max
     depends_on:
       - composer
 
   - name: php-cs-fixer
-    image: php:7.3-alpine
+    image: php:7.4-alpine
     commands:
       - bin/php-cs-fixer fix --dry-run --diff src/
     depends_on:
@@ -24,7 +25,7 @@ steps:
 
   - name: codeception
     # For now we use this relatively unpopular image because it has PHP 7.3 and XDEBUG
-    image: mileschou/xdebug:7.3
+    image: timfennis/pcov
     commands:
       - bin/codecept run unit --coverage-xml
     depends_on:
