@@ -110,10 +110,12 @@ class Left extends Either
         return $handler($this->value);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function leftIfNull(callable $default): Either
+    {
+        return $this;
+    }
+
+    public function filterOrElse(callable $predicate, callable $default): Either
     {
         return $this;
     }

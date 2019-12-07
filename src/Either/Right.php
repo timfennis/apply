@@ -116,4 +116,11 @@ class Right extends Either
             ? new Left($default())
             : $this;
     }
+
+    public function filterOrElse(callable $predicate, callable $default): Either
+    {
+        return $predicate($this->value)
+            ? $this
+            : new Left($default());
+    }
 }

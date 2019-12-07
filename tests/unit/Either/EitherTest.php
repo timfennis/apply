@@ -206,4 +206,29 @@ class EitherTest extends Unit
 
         $this->assertTrue($wasCalled, 'Failed asserting that the callable was called');
     }
+
+    public function testFilterOrElseWithTruePredicate()
+    {
+        $e = new Right(10);
+        $e = $e->filterOrElse(fn ($num) => $num > 5, fn () => 'too low');
+
+        $value = $e->getOrElse(fn () => 'no comprende');
+        $this->assertSame(10, $value);
+    }
+
+    public function testFilterOrElseWithFalsePredicate()
+    {
+        $e = new Right(10);
+        $e = $e->filterOrElse(fn ($num) => $num > 20, fn () => 'too low');
+
+        $value = $e->getOrElse(fn () => 'no comprende');
+        $this->assertSame('no comprende', $value);
+    }
+
+    public function testFilterOrElseWithLeft()
+    {
+        $e = new Left(100);
+        $e = $e->filterOrElse(fn ($i) => $this->fail('this code should not be executed'), fn () => $this->fail('this code should not be executed'));
+        $this->assertSame(100, $e->fold(fn ($x) => $x, fn () => $this->fail('this code should not be executed')));
+    }
 }
