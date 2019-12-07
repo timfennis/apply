@@ -20,7 +20,7 @@ class LazyIterator implements Iterator
         $this->callable = $callable;
     }
 
-    private function init(): void
+    private function getIterator(): Iterator
     {
         if (null === $this->internalIterator) {
             $value = ($this->callable)();
@@ -33,38 +33,32 @@ class LazyIterator implements Iterator
                 $this->internalIterator = new ArrayIterator([$value]);
             }
         }
+
+        return $this->internalIterator;
     }
 
     public function current()
     {
-        $this->init();
-
-        return $this->internalIterator->current();
+        return $this->getIterator()->current();
     }
 
     public function next()
     {
-        $this->init();
-        $this->internalIterator->next();
+        $this->getIterator()->next();
     }
 
     public function key()
     {
-        $this->init();
-
-        return $this->internalIterator->key();
+        return $this->getIterator()->key();
     }
 
     public function valid()
     {
-        $this->init();
-
-        return $this->internalIterator->valid();
+        return $this->getIterator()->valid();
     }
 
     public function rewind()
     {
-        $this->init();
-        $this->internalIterator->rewind();
+        $this->getIterator()->rewind();
     }
 }
