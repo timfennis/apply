@@ -12,6 +12,36 @@ use function Apply\Option\just;
 
 class OptionTest extends Unit
 {
+    public function testIsDefinedAndIsEmpty()
+    {
+        $option = just(5);
+        $this->assertTrue($option->isDefined());
+        $this->assertFalse($option->isEmpty());
+
+        $nothing = None::create();
+        $this->assertTrue($nothing->isEmpty());
+        $this->assertFalse($nothing->isDefined());
+    }
+
+    public function testOrElse()
+    {
+        $five = just(5);
+        $six = just(6);
+        $notSeven = None::create();
+
+        $this->assertSame($five, $five->orElse($notSeven));
+        $this->assertSame($five, $five->orElse($six));
+        $this->assertSame($five, $notSeven->orElse($five));
+    }
+
+    public function testGetOrCall()
+    {
+        $five = just(5);
+
+        $this->assertSame(5, $five->getOrCall(fn() => 6));
+        $this->assertSame(6, None::create()->getOrCall(fn() => 6));
+    }
+
     public function testFilter()
     {
         $option = just(10);
