@@ -8,10 +8,16 @@ use Apply\Either\Either;
 use Apply\Either\Left;
 use Throwable;
 
+/**
+ * @phpstan-template T
+ * @phpstan-extends Attempt<T>
+ */
 final class Failure extends Attempt
 {
-    /** @var Throwable */
-    private $error;
+    /**
+     * @var Throwable
+     */
+    private Throwable $error;
 
     public function __construct(Throwable $error)
     {

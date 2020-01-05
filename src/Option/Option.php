@@ -31,7 +31,7 @@ use IteratorAggregate;
 /**
  * Class Option.
  *
- * @template T
+ * @phpstan-template T
  */
 abstract class Option implements IteratorAggregate
 {
@@ -57,6 +57,11 @@ abstract class Option implements IteratorAggregate
 
     abstract public function get();
 
+    /**
+     * @phpstan-template    P
+     * @phpstan-param       P $default
+     * @phpstan-return      T|P
+     */
     abstract public function getOrElse($default);
 
     abstract public function getOrCall(callable $callable);

@@ -17,23 +17,23 @@ abstract /* sealed */ class Either
 {
     /**
      * @template C
-     * @phan-param callable(B): C $f
-     * @phan-return Either<A, C>
+     * @phpstan-param callable(B): C $f
+     * @phpstan-return Either<A, C>
      */
     abstract public function map(callable $f): Either;
 
     /**
      * @template C
-     * @phan-param callable(B): Either<A, C> $f
-     * @phan-return Either<A, C>
+     * @phpstan-param callable(B): Either<A, C> $f
+     * @phpstan-return Either<A, C>
      */
     abstract public function flatMap(callable $f): Either;
 
     /**
      * @template C
-     * @phan-param callable(A): C $ifLeft
-     * @phan-param callable(B): C $ifRight
-     * @phan-return C
+     * @phpstan-param callable(A): C $ifLeft
+     * @phpstan-param callable(B): C $ifRight
+     * @phpstan-return C
      *
      * @return mixed
      */
@@ -41,9 +41,9 @@ abstract /* sealed */ class Either
 
     /**
      * @template C
-     * @phan-param C $initial
-     * @phan-param callable(C, B): C $rightOperation
-     * @phan-return C
+     * @phpstan-param C $initial
+     * @phpstan-param callable(C, B): C $rightOperation
+     * @phpstan-return C
      *
      * @param mixed $initial
      *
@@ -53,9 +53,9 @@ abstract /* sealed */ class Either
 
     /**
      * @template C
-     * @phan-param EvalM<C> $initial
-     * @phan-param callable(B, EvalM<C>): EvalM<C> $rightOperation
-     * @phan-return EvalM<C>
+     * @phpstan-param EvalM<C> $initial
+     * @phpstan-param callable(B, EvalM<C>): EvalM<C> $rightOperation
+     * @phpstan-return EvalM<C>
      */
     abstract public function foldRight(EvalM $initial, callable $rightOperation): EvalM;
 
@@ -64,7 +64,7 @@ abstract /* sealed */ class Either
     abstract public function isRight(): bool;
 
     /**
-     * @phan-return Either<B, A>
+     * @phpstan-return Either<B, A>
      */
     abstract public function swap(): Either;
 
@@ -72,8 +72,8 @@ abstract /* sealed */ class Either
      * The given function is applied if this is a `Left`.
      *
      * @template C
-     * @phan-param callable(A): C $f
-     * @phan-return Either<C, B>
+     * @phpstan-param callable(A): C $f
+     * @phpstan-return Either<C, B>
      */
     abstract public function mapLeft(callable $f): Either;
 
@@ -82,27 +82,27 @@ abstract /* sealed */ class Either
      *
      * @template C
      * @template D
-     * @phan-param callable(A): C $leftOperation
-     * @phan-param callable(B): D $rightOperation
-     * @phan-return Either<C, D>
+     * @phpstan-param callable(A): C $leftOperation
+     * @phpstan-param callable(B): D $rightOperation
+     * @phpstan-return Either<C, D>
      */
     abstract public function bimap(callable $leftOperation, callable $rightOperation): Either;
 
     /**
-     * @phan-param callable(B): bool $predicate
+     * @phpstan-param callable(B): bool $predicate
      */
     abstract public function exists(callable $predicate): bool;
 
     /**
-     * @phan-return Option<B>
+     * @phpstan-return Option<B>
      */
     abstract public function toOption(): Option;
 
     /**
      * Returns the value from this [Either.Right] or the given argument if this is a [Either.Left].
      *
-     * @phan-param callable: B $default
-     * @phan-return B
+     * @phpstan-param callable: B $default
+     * @phpstan-return B
      *
      * @return mixed
      */
@@ -111,7 +111,7 @@ abstract /* sealed */ class Either
     /**
      * Returns the value from this [Either.Right] or null if this is a [Either.Left].
      *
-     * @phan-return ?B
+     * @phpstan-return ?B
      *
      * @return mixed
      */
@@ -121,44 +121,44 @@ abstract /* sealed */ class Either
      * Returns the value from this [Either.Right] or allows clients to transform [Either.Left] to [Either.Right] while
      * providing access to the value of [Either.Left].
      *
-     * @phan-param callable(A): B $default
-     * @phan-return B
+     * @phpstan-param callable(A): B $default
+     * @phpstan-return B
      *
      * @return mixed
      */
     abstract public function getOrHandle(callable $default);
 
     /**
-     * @phan-param callable(A): Either<A, B> $handler
-     * @phan-return Either<A, B>
+     * @phpstan-param callable(A): Either<A, B> $handler
+     * @phpstan-return Either<A, B>
      */
     abstract public function handleErrorWith(callable $handler): Either;
 
     /**
-     * @phan-param callable(): A $default
-     * @phan-return Either<A, B>
+     * @phpstan-param callable(): A $default
+     * @phpstan-return Either<A, B>
      */
     abstract public function leftIfNull(callable $default): Either;
 
     /**
-     * @phan-param callable(): bool $predicate
-     * @phan-param callable(): B $default
-     * @phan-return Either<A, B>
+     * @phpstan-param callable(): bool $predicate
+     * @phpstan-param callable(): B $default
+     * @phpstan-return Either<A, B>
      */
     abstract public function filterOrElse(callable $predicate, callable $default): Either;
 
     /**
-     * @phan-param callable(): bool $predicate
-     * @phan-param callable(): Left<A> $default
-     * @phan-return Either<A, B>
+     * @phpstan-param callable(): bool $predicate
+     * @phpstan-param callable(): Left<A> $default
+     * @phpstan-return Either<A, B>
      */
     abstract public function filterOrOther(callable $predicate, callable $default): Either;
 
     /**
      * @template E
      * @template R
-     * @phan-param callable(): R $body
-     * @phan-return Either<E, R>
+     * @phpstan-param callable(): R $body
+     * @phpstan-return Either<E, R>
      */
     public static function binding(callable $body): Either
     {

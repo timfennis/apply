@@ -7,11 +7,21 @@ namespace Apply\Attempt;
 use Apply\Either\Either;
 use Apply\Either\Right;
 
+/**
+ * @phpstan-template T
+ * @phpstan-extends Attempt<T>
+ */
 final class Success extends Attempt
 {
-    /** @var mixed */
+    /**
+     * @var mixed
+     * @phpstan-var T
+     */
     private $value;
 
+    /**
+     * @phpstan-param T $value
+     */
     public function __construct($value)
     {
         $this->value = $value;
