@@ -13,10 +13,10 @@ use function Apply\constant;
  *
  * @return mixed
  *
- * @phpstan-template T
- * @phpstan-param iterable<T>         $collection
- * @phpstan-param callable(T): bool    $predicate
- * @phpstan-return                    T|null
+ * @phpstan-template    T
+ * @phpstan-param       iterable<T>         $collection
+ * @phpstan-param       callable(T): bool   $predicate
+ * @phpstan-return      ?T
  */
 function firstOrNull(iterable $collection, ?callable $predicate = null)
 {

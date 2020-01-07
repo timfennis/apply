@@ -6,7 +6,15 @@ namespace Apply\Collection\Imperative;
 
 use function Apply\Collection\Curried\all as curriedAll;
 
-function all(iterable $iterable, callable $callable): bool
+/**
+ * Checks whether some predicate is true for every element in the collection.
+ *
+ * @phpstan-template    T
+ * @phpstan-param       iterable<T>           $iterable
+ * @phpstan-param       callable(T): bool     $predicate
+ * @phpstan-return      bool
+ */
+function all(iterable $iterable, callable $predicate): bool
 {
-    return curriedAll($callable)($iterable);
+    return curriedAll($predicate)($iterable);
 }
