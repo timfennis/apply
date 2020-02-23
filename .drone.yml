@@ -11,14 +11,14 @@ steps:
   - name: phpstan
     image: php:7.4-alpine
     commands:
-      - bin/phpstan analyze src/ --level=max
+      - ./vendor/bin/phpstan analyze src/ --level=max
     depends_on:
       - composer
 
   - name: php-cs-fixer
     image: php:7.4-alpine
     commands:
-      - bin/php-cs-fixer fix --dry-run --diff src/
+      - ./vendor/bin/php-cs-fixer fix --dry-run --diff src/
     depends_on:
       - composer
 
@@ -26,7 +26,7 @@ steps:
     # For now we use this relatively unpopular image because it has PHP 7.3 and XDEBUG
     image: timfennis/pcov
     commands:
-      - bin/codecept run unit --coverage-xml
+      - ./vendor/bin/codecept run unit --coverage-xml
     depends_on:
       - composer
 
