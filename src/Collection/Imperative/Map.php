@@ -12,7 +12,7 @@ use Generator;
  * @phpstan-template    R
  * @phpstan-param       iterable<T>     $collection
  * @phpstan-param       callable(T): R  $callback
- * @phpstan-return      iterable<R>
+ * @phpstan-return      Generator<R>
  */
 function map(iterable $collection, callable $callback): Generator
 {

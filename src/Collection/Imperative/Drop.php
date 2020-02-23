@@ -13,7 +13,7 @@ use Generator;
  * @phpstan-template    T
  * @phpstan-param       iterable<T>     $iterable
  * @phpstan-param       int             $amount
- * @phpstan-return      iterable<T>
+ * @phpstan-return      Generator<T>
  */
 function drop(iterable $iterable, int $amount): Generator
 {

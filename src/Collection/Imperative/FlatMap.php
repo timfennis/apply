@@ -13,7 +13,7 @@ use Generator;
  * @phpstan-template    T
  * @phpstan-param       iterable<T>                 $collection
  * @phpstan-param       callable(T): iterable<T>    $callback
- * @phpstan-return      iterable<T>
+ * @phpstan-return      Generator<T>
  */
 function flatMap(iterable $collection, callable $callback): Generator
 {

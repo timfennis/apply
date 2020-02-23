@@ -11,7 +11,7 @@ use Generator;
  * @phpstan-template    T
  * @phpstan-param       iterable<T>         $collection
  * @phpstan-param       callable(T): bool   $predicate
- * @phpstan-return      iterable<T>
+ * @phpstan-return      Generator<T>
  */
 function filter(iterable $collection, callable $predicate): Generator
 {

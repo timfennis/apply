@@ -14,8 +14,8 @@ use Generator;
  *
  * @phpstan-template    T
  * @phpstan-param       T               $head
- * @phpstan-param       iterable<T>     $tail
- * @phpstan-return      iterable<T>
+ * @phpstan-param       Generator<T>     $tail
+ * @phpstan-return      Generator<T>
  */
 function cons($head, iterable $tail): Generator
 {
