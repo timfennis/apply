@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Apply\Attempt;
 
-use function Apply\Fun\constant;
 use Apply\Either\Either;
+use function Apply\Fun\constant;
 use Apply\Functions;
 use Apply\Option\None;
 use Apply\Option\Option;
@@ -23,10 +23,6 @@ use Throwable;
 abstract class Attempt
 {
     /**
-     * @param callable $callable
-     *
-     * @return Attempt
-     *
      * @phpstan-param callable(): T $callable
      * @phpstan-return Attempt<T>
      */
@@ -65,7 +61,7 @@ abstract class Attempt
      */
     public function map(callable $f): Attempt
     {
-        return $this->flatMap(static fn($value): Success => new Success($f($value)));
+        return $this->flatMap(static fn ($value): Success => new Success($f($value)));
     }
 
     /**
@@ -74,7 +70,7 @@ abstract class Attempt
      */
     public function exists(callable $predicate): bool
     {
-        return $this->fold(constant(false), static fn($value): bool => $predicate($value));
+        return $this->fold(constant(false), static fn ($value): bool => $predicate($value));
     }
 
     /**

@@ -8,7 +8,7 @@ use function Apply\Collection\Imperative\foldl1;
 
 function pipe($a, $b): callable
 {
-    return static fn(...$args) => $b($a(...$args));
+    return static fn (...$args) => $b($a(...$args));
 }
 
 function pipeMany(...$operations): callable

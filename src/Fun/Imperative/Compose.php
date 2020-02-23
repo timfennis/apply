@@ -6,5 +6,5 @@ namespace Apply\Fun\Imperative;
 
 function compose(callable $l, callable $r)
 {
-    return fn($arg) => $l($r($arg));
+    return fn ($arg) => $l($r($arg));
 }
