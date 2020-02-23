@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Test\Apply\Attempt;
 
 use Apply\Attempt\Attempt;
-use function Apply\constant;
+use function Apply\Fun\constant;
 use Apply\Either\Left;
 use Apply\Functions;
 use Codeception\Test\Unit;

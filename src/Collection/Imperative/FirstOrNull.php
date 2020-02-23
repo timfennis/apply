@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Apply\Collection\Imperative;
 
 use function Apply\Collection\Curried\firstOrNull as curriedFirstOrNull;
-use function Apply\constant;
+use function Apply\Fun\constant;
 
 /**
  * @param iterable $collection Some list of T's

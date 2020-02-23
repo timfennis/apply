@@ -1,0 +1,1 @@
+C:37:"PHPUnit\Runner\DefaultTestResultCache":280:{a:2:{s:7:"defects";a:2:{s:44:"unit\Fun\IdentityTest::it_preserves_identity";i:4;s:46:"unit\Fun\ConstantTest::it_returns_its_argument";i:4;}s:5:"times";a:2:{s:44:"unit\Fun\IdentityTest::it_preserves_identity";d:0.006;s:46:"unit\Fun\ConstantTest::it_returns_its_argument";d:0.008;}}}

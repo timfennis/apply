@@ -16,12 +16,10 @@ class LastOrNullTest extends Unit
      */
     public function testLastOrNull(iterable $collection, ?int $expectedResult)
     {
-        $this->assertSame($expectedResult, lastOrNull($collection, static function ($num) {
-            return $num > 5;
-        }));
+        $this->assertSame($expectedResult, lastOrNull($collection, static fn($num) => $num > 5));
     }
 
-    public function testThatArrayPerformanceIsOptimal()
+    public function testThatArrayPerformanceIsOptimal(): void
     {
         $timesCalled = 0;
         $array = [1, 2, 3, 4, 5, 6, 7, 8, 10];
@@ -35,6 +33,11 @@ class LastOrNullTest extends Unit
 
         $this->assertSame(10, $result);
         $this->assertSame(1, $timesCalled);
+    }
+
+    public function testWithNoClosure(): void
+    {
+        $this->assertSame(3, lastOrNull([1,2,3]));
     }
 
     public function lastOrNullDataProvider()

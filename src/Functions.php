@@ -7,6 +7,6 @@ namespace Apply;
 class Functions
 {
     //todo leverage code generation
-    public const identity = '\Apply\identity';
-    public const constant = '\Apply\constant';
+    public const identity = '\Apply\Fun\identity';
+    public const constant = '\Apply\Fun\constant';
 }

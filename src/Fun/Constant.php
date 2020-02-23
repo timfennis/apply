@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Apply;
+namespace Apply\Fun;
 
 /**
  * constant :: a -> (b -> a).

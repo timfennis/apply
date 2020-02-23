@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Apply\Attempt;
 
-use function Apply\constant;
+use function Apply\Fun\constant;
 use Apply\Either\Either;
 use Apply\Functions;
 use Apply\Option\None;

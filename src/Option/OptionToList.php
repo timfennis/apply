@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Apply\Option;
 
-use function Apply\constant;
+use function Apply\Fun\constant;
 
 function optionToList(Option $option)
 {

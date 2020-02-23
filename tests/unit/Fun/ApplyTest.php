@@ -29,6 +29,6 @@ class ApplyTest extends Unit
 
     public function testWithNoArguments()
     {
-        $this->assertSame(10, apply(\Apply\constant(10))());
+        $this->assertSame(10, apply(\Apply\Fun\constant(10))());
     }
 }

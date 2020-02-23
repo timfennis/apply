@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Test\Apply\Unit\Collection;
 
 use function Apply\Collection\Imperative\flatMap;
-use function Apply\constant;
+use function Apply\Fun\constant;
 use Apply\Functions;
 use Codeception\Test\Unit;
 
