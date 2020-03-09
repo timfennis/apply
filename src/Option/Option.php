@@ -96,7 +96,7 @@ abstract class Option implements IteratorAggregate
 
     /**
      * @template A
-     * @phan-param callable(): Option<A> $callable
+     * @phan-param callable(): A $callable
      * @phan-return Option<A>
      */
     public static function binding(callable $callable): Option

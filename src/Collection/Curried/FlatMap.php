@@ -16,12 +16,8 @@ use Generator;
 function flatMap(callable $callable): callable
 {
     return static function (iterable $collection) use ($callable): Generator {
-        foreach ($collection as $index => $value) {
-            $result = $callable($value);
-
-            if (is_iterable($result)) {
-                yield from $result;
-            }
+        foreach ($collection as $value) {
+            yield from $callable($value);
         }
     };
 }
