@@ -17,7 +17,9 @@ function flatMap(callable $callable): callable
 {
     return static function (iterable $collection) use ($callable): Generator {
         foreach ($collection as $value) {
-            yield from $callable($value);
+            foreach ($callable($value) as $innerValue) {
+                yield $innerValue;
+            }
         }
     };
 }
