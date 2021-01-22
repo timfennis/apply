@@ -7,10 +7,11 @@ namespace Apply\Collection\Imperative;
 use function Apply\Collection\Curried\foldl1 as curriedFoldl1;
 
 /**
- * @phpstan-template    T
- * @phpstan-param       iterable<T>         $iterable
- * @phpstan-param       callable(T,T): T    $callable
- * @phpstan-return      T
+ * @phpstan-template    A
+ * @phpstan-template    B
+ * @phpstan-param       iterable<B>         $iterable
+ * @phpstan-param       callable(A,B): A    $callable
+ * @phpstan-return      A
  */
 function foldl1(iterable $iterable, callable $callable)
 {
