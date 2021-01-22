@@ -11,11 +11,12 @@ use function Apply\Collection\Curried\foldl as curriedFoldl;
  *
  * @return mixed
  *
- * @phpstan-template    T
- * @phpstan-param       iterable<T>         $iterable
- * @phpstan-param       callable(T,T): T    $callable
- * @phpstan-param       T                   $initial
- * @phpstan-return      T
+ * @phpstan-template    A
+ * @phpstan-template    B
+ * @phpstan-param       iterable<B>         $iterable
+ * @phpstan-param       callable(A,B): A    $callable
+ * @phpstan-param       A                   $initial
+ * @phpstan-return      A
  */
 function foldl(iterable $iterable, callable $callable, $initial)
 {
