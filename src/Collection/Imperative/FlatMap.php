@@ -10,10 +10,11 @@ use Generator;
 /**
  * Flat map!
  *
- * @phpstan-template    T
- * @phpstan-param       iterable<T>                 $collection
- * @phpstan-param       callable(T): iterable<T>    $callback
- * @phpstan-return      Generator<T>
+ * @phpstan-template    A
+ * @phpstan-template    B
+ * @phpstan-param       iterable<A>                 $collection
+ * @phpstan-param       callable(A): iterable<B>    $callback
+ * @phpstan-return      Generator<B>
  */
 function flatMap(iterable $collection, callable $callback): Generator
 {
