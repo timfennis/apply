@@ -11,7 +11,6 @@ use JetBrains\PhpStorm\Pure;
  */
 class Twister
 {
-    /** @var array */
     private array $state;
 
     private function __construct(array $state)

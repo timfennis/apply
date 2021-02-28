@@ -14,9 +14,6 @@ use Throwable;
  */
 final class Failure extends Attempt
 {
-    /**
-     * @var Throwable
-     */
     private Throwable $error;
 
     public function __construct(Throwable $error)

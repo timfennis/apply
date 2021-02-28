@@ -12,8 +12,6 @@ use InvalidArgumentException;
  * Extract the first element of a list, which must be non-empty. use firstOrNull if you want to accept empty lists.
  *
  * @throws InvalidArgumentException if the list is completely empty
- *
- * @return mixed
  */
 function head(iterable $collection): mixed
 {

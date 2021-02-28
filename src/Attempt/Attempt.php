@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Apply\Attempt;
 
 use Apply\Either\Either;
-use JetBrains\PhpStorm\Pure;
 use function Apply\Fun\constant;
 use Apply\Functions;
 use Apply\Option\None;
 use Apply\Option\Option;
 use Apply\Option\Some;
 use Generator;
+use JetBrains\PhpStorm\Pure;
 use Throwable;
 
 /**
@@ -98,7 +98,7 @@ abstract class Attempt
      * @phpstan-template R
      * @phpstan-return R
      */
-    public function getOrThrow(\Throwable $t)
+    public function getOrThrow(Throwable $t)
     {
         return $this->fold(fn () => throw $t, Functions::identity);
     }
