@@ -26,6 +26,7 @@ namespace Apply\Option;
 
 use EmptyIterator;
 use Exception;
+use JetBrains\PhpStorm\Pure;
 use RuntimeException;
 
 final class None extends Option
@@ -65,7 +66,7 @@ final class None extends Option
         return $default;
     }
 
-    public function getOrThrow(Exception $ex): void
+    public function getOrThrow(Exception $ex)
     {
         throw $ex;
     }

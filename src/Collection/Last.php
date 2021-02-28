@@ -8,10 +8,8 @@ use Apply\Exception\InvalidArgumentException;
 
 /**
  * last :: [a] -> a.
- *
- * @return mixed|null
  */
-function last(iterable $collection)
+function last(iterable $collection): mixed
 {
     if (is_array($collection)) {
         $key = array_key_last($collection);

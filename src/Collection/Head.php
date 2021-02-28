@@ -15,7 +15,7 @@ use InvalidArgumentException;
  *
  * @return mixed
  */
-function head(iterable $collection)
+function head(iterable $collection): mixed
 {
     foreach ($collection as $item) {
         return $item;

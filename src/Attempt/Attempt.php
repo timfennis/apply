@@ -93,15 +93,27 @@ abstract class Attempt
 
     /**
      * @phpstan-template R
+     * @phpstan-return R
+     */
+    public function getOrThrow(\Throwable $t)
+    {
+        return $this->fold(fn () => throw $t, Functions::identity);
+    }
+
+    /**
+     * @phpstan-template R
      * @phpstan-param callable(T): Attempt<R> $f
      * @phpstan-return Attempt<R>
      */
     abstract public function flatMap(callable $f): self;
 
     /**
+     * @phpstan-template T
      * @phpstan-template R
+     *
      * @phpstan-param callable(\Throwable): R $ifFailure
      * @phpstan-param callable(T): R $ifSuccess
+     *
      * @phpstan-return R
      */
     abstract public function fold(callable $ifFailure, callable $ifSuccess);

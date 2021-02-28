@@ -9,7 +9,6 @@ use Iterator;
 
 class LazyIterator implements Iterator
 {
-    /** @var Iterator */
     private ?Iterator $internalIterator = null;
 
     /** @var callable */

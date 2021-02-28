@@ -8,10 +8,8 @@ use Generator;
 
 /**
  * Converts some iterable into a Generator by calling yield from.
- *
- * @return Generator
  */
-function iteratorOf(iterable $iterable)
+function iteratorOf(iterable $iterable): Generator
 {
     yield from $iterable;
 }
