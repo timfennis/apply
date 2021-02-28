@@ -11,6 +11,7 @@ use Apply\Functions;
 use Apply\Option\None;
 use Apply\Option\Some;
 use Codeception\Test\Unit;
+use JetBrains\PhpStorm\Pure;
 
 class EitherTest extends Unit
 {
@@ -139,6 +140,7 @@ class EitherTest extends Unit
         $this->assertSame(10, $rightResponse);
     }
 
+    #[Pure]
     public function flatMapDataProvider(): array
     {
         return [
@@ -170,7 +172,8 @@ class EitherTest extends Unit
         $this->assertEquals($expectedResult, $result);
     }
 
-    public function eitherBindingDataProvider()
+    #[Pure]
+    public function eitherBindingDataProvider(): array
     {
         return [
             [new Left(1), new Left(1), new Left(1)],

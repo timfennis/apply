@@ -7,6 +7,7 @@ namespace Apply\Either;
 use Apply\EvalM\EvalM;
 use Apply\Option\None;
 use Apply\Option\Option;
+use JetBrains\PhpStorm\Pure;
 
 /**
  * Class Left.
@@ -65,6 +66,7 @@ class Left extends Either
         return false;
     }
 
+    #[Pure]
     public function swap(): Either
     {
         return new Right($this->value);

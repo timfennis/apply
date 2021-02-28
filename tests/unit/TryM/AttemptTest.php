@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Test\Apply\Attempt;
 
 use Apply\Attempt\Attempt;
+use JetBrains\PhpStorm\Pure;
 use function Apply\Fun\constant;
 use Apply\Either\Left;
 use Apply\Functions;
@@ -129,7 +130,8 @@ class AttemptTest extends Unit
         }
     }
 
-    public function monadBindingProvider()
+    #[Pure]
+    public function monadBindingProvider(): array
     {
         return [
             [Attempt::just(1), Attempt::just(2), 3],

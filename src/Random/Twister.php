@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Apply\Random;
 
+use JetBrains\PhpStorm\Pure;
+
 /**
  * @internal
  */
@@ -22,6 +24,7 @@ class Twister
         return $this->state[$i];
     }
 
+    #[Pure]
     public static function fromSeed($seed): Twister
     {
         $state[0] = $seed & 0xffffffff;
@@ -33,6 +36,7 @@ class Twister
         return new self($state);
     }
 
+    #[Pure]
     public static function generate(Twister $twister): Twister
     {
         $state = $twister->state;

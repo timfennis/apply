@@ -8,6 +8,7 @@ use Apply\Option\None;
 use Apply\Option\Option;
 use Apply\Option\Some;
 use Codeception\Test\Unit;
+use JetBrains\PhpStorm\Pure;
 use function Apply\Option\just;
 
 class OptionTest extends Unit
@@ -121,7 +122,8 @@ class OptionTest extends Unit
         ];
     }
 
-    public function invalidReturnValueProvider()
+    #[Pure]
+    public function invalidReturnValueProvider(): array
     {
         return [
             [1],

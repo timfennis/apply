@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Apply\EvalM;
 
 use Generator;
+use JetBrains\PhpStorm\Pure;
 use RuntimeException;
 
 /**
@@ -163,6 +164,7 @@ abstract class EvalM
         return 'value' === $name;
     }
 
+    #[Pure]
     public static function now($value): Now
     {
         return new Now($value);

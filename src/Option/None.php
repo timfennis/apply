@@ -46,7 +46,8 @@ final class None extends Option
         return self::$instance;
     }
 
-    public function getIterator()
+    #[Pure]
+    public function getIterator(): EmptyIterator
     {
         return new EmptyIterator();
     }

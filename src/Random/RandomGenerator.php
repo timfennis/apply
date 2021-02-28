@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Apply\Random;
 
+use JetBrains\PhpStorm\Pure;
+
 class RandomGenerator
 {
     private Twister $twister;
@@ -33,6 +35,7 @@ class RandomGenerator
         return [new RandomGenerator($nextTwister, $nextIndex), $y];
     }
 
+    #[Pure]
     public static function fromSeed($seed): RandomGenerator
     {
         return new RandomGenerator(Twister::fromSeed($seed), 0);

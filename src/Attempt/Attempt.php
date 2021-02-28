@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Apply\Attempt;
 
 use Apply\Either\Either;
+use JetBrains\PhpStorm\Pure;
 use function Apply\Fun\constant;
 use Apply\Functions;
 use Apply\Option\None;
@@ -39,6 +40,7 @@ abstract class Attempt
      * @phpstan-param T&Throwable $throwable
      * @phpstan-return Failure<T>
      */
+    #[Pure]
     public static function raiseError(Throwable $throwable): Failure
     {
         return new Failure($throwable);
@@ -49,6 +51,7 @@ abstract class Attempt
      * @phpstan-param P $value
      * @phpstan-return Success<P>
      */
+    #[Pure]
     public static function just($value): Success
     {
         return new Success($value);

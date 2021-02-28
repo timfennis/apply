@@ -7,9 +7,6 @@
 Apply is a **PHP Library** that aims to promote and bring functional programming ideas from different languages and 
 libraries such as Haskell, Scala, Kotlin, Arrow and Cats to PHP.
 
-This library is designed to be used with PHP 7.4 which does not have a stable release yet. The documentation uses some
-of the new syntax (particularly the short closure syntax) for brevity.
-
 ## Stability
 
 The library is currently very much a work in progress. Everything could change at any moment.
@@ -17,7 +14,7 @@ The library is currently very much a work in progress. Everything could change a
 ## Contributing
 
 I'm currently looking for ideas, suggestions, criticisms and contributions. The library is very much in a draft state,
-some of the functions probably don't work they way they 'should' and test coverage is still only 50ish percent.
+some functions probably don't work they way they 'should' and test coverage is still only 50ish percent.
 
 * If you have any ideas for functional programming concepts that could work well in PHP, please open an issue or PR and 
 get involved.
@@ -30,7 +27,7 @@ issue and let me know!
  
 ### Collections
 
-All of the collection functions in this library attempt to follow a pattern in terms of naming and argument order.
+All collection functions in this library attempt to follow a pattern in terms of naming and argument order.
 Usually the names and arguments you'll find are taken from Haskell's standard library. Every function has a Curried
 version where the argument order matches the one in Haskell. In this argument order the subject of the function is
 always the last argument so that the curried functions can be used to create partially applied functions that can
@@ -40,7 +37,7 @@ the first argument followed by the other arguments in the same order. This order
 to read in imperative code and because it's similar to most other languages.
 
 Functions that return collections of elements will always return Generators in order to be as lazy as possible.
-Functions that return a single element or a scalar value are not lazy. 
+Functions that return a single element, or a scalar value are not lazy. 
 
 #### All
 
@@ -87,12 +84,12 @@ have to understand them in order to (ab)use them though.
 
 ### Try
 
-`Attempt` represents the result of a computation that can either have a result when the computation was successful or
+`Attempt` represents the result of a computation that can either have a result when the computation was successful, or
 an exception if something went wrong. If the computation went correctly you get a `Success<A>` containing the result and 
 if the computation goes wrong you get a `Failure` containing the exception.
 
-`Attempt` looks a lot like `Either` but is especially useful in situation where you have to consume some library or 
-language feature that throws unwanted exception. `Attempt` can be used to to capture exceptions and performing computations
+`Attempt` looks a lot like `Either` but is especially useful in situations where you have to consume some library or 
+language feature that throws unwanted exception. `Attempt` can be used to capture exceptions and performing computations
 on the result without having to build complicated and verbose `try-catch` blocks. 
 
 ```php
@@ -122,7 +119,7 @@ $number = $tryLoad->fold(
 ### Option (Maybe)
 
 The Option monad is a modern rewrite of `schmittjoh/php-option` which can be found 
-[here](https://github.com/schmittjoh/php-option). It's designed to be mostly compatible with it's interface.
+[here](https://github.com/schmittjoh/php-option). It's designed to be mostly compatible with its interface.
 
 Suggestions are welcome.
 
@@ -155,12 +152,12 @@ Wrapper around a lazy computation.
 
 ## Monad Comprehensions
 
-Many programming languages have a form of monad comprehensions but they go by different names with slightly different
-implementations. In Haskell you have the 'do notation', in Scala you have for-comprehensions and in JavaScript you can 
+Many programming languages have a form of monad comprehensions, but they go by different names with slightly different
+implementations. In Haskell, you have the 'do notation', in Scala you have for-comprehensions and in JavaScript you can 
 use async/await to accomplish similar results.
 
-In PHP we don't have much use for asynchronous programming and IO monads, but the syntax of monad comprehensions can
-still offer us a way to combine the results of many monads in an elegant way.
+In PHP, we don't have much use for asynchronous programming and IO monads, but the syntax of monad comprehensions can
+still offer us a way to combine the results of many monads elegantly.
 
 First let's look at one example that doesn't look very nice. Here we have two computations that can fail in some way.
 In order to combine the results of these computations whe have to take them out of the 'package' that they came in, 
@@ -198,7 +195,7 @@ $sum; // Some(6)
 ```
 
 That looks a lot more like the kind of code that you want to write! It's not perfect because we have to wrap the whole
-thing in a callable and pass that to the `binding` function. But it's much easier to read then our first example. 
+thing in a callable and pass that to the `binding` function, but it's much easier to read then our first example. 
 Especially if the amount of computations increases.
 
 ## License
