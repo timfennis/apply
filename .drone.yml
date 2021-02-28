@@ -4,19 +4,19 @@ name: default
 
 steps:
   - name: composer
-    image: composer:1.9
+    image: composer:2.0.11
     commands:
       - composer install
 
   - name: phpstan
-    image: php:7.4-alpine
+    image: php:8.0-alpine
     commands:
       - ./vendor/bin/phpstan analyze src/ --level=max
     depends_on:
       - composer
 
   - name: php-cs-fixer
-    image: php:7.4-alpine
+    image: php:8.0-alpine
     commands:
       - ./vendor/bin/php-cs-fixer fix --dry-run --diff src/
     depends_on:
@@ -40,4 +40,5 @@ steps:
         - 'tests/_output'
     depends_on:
       - codeception
+
 
